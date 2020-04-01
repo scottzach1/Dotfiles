@@ -1,0 +1,44 @@
+/*
+This is the custom styles file where you can add anything you want.
+The styles here will be injected into Caprine and will override default styles.
+If you want to disable styles but keep the config, just comment the lines that you don't want to be used.
+
+Here are some dark mode color variables to get you started.
+Edit them to change color scheme of Caprine.
+Press Command/Ctrl+R in Caprine to see your changes.
+*/
+
+color-pallete {
+	Background:		#282a36; /* Background Color */
+	Current_Line: 	#44475a; /* Current Line Color */
+	Selection: 		#44475a; /* Selection Color */
+	Foreground: 	#f8f8f2; /* Foreground Color */
+	Comment: 		#6272a4; /* Comment Color */
+	Cyan: 			#8be9fd; /* Cyan Color */
+	Green: 			#50fa7b; /* Green Color */
+	Orange: 		#ffb86c; /* Orange Color */
+	Pink: 			#ff79c6; /* Pink Color */
+	Purple: 		#bd93f9; /* Purple Color */
+	Red: 			#ff5555; /* Red Color */
+	Yellow: 		#f1fa8c; /* Yellow Color */
+}
+
+:root {
+	--base: #39ff00;         							/* UNSURE OF USAGE */
+	--base-ninety: #f8f8f2; /* Personal Text */
+	--base-seventy-five: #39ff00; 						/* UNSURE OF USAGE */
+	--base-seventy: #f8f8f2; /* Recipient & Heading Color */
+	--base-fifty: #8be9fd; /* Preview text */
+	--base-fourty: #f1fa8c; /* Message Accent */
+	--base-thirty: #3a3d4b; /* User Text box text */
+	--base-twenty: #44475a; /* Dates & Selected text */
+	--base-five: #282a36; /* Separators */
+	--base-ten: #22232e; /* Chat bubble Color & Search Bar */
+	--base-nine: #39ff00;         						/* UNSURE OF USAGE */
+	--container-color: #282a36; /* BG Main */
+	--container-dark-color: #39ff00;         			/* UNSURE OF USAGE */
+	--list-header-color: #22232e; /* Dark Border */
+	--blue: #39ff00;         			/* UNSURE OF USAGE */
+	/* Active conversation. */
+	--selected-conversation-background: linear-gradient(hsl(265, 89%, 78%), hsl(265, 89%, 78%));
+}

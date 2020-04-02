@@ -10,7 +10,9 @@ fi
 . $HOME/.dmenurc
 
 if [ -z "$TERMINAL_CMD" ]; then
-  if [ "$(which terminal)" ]; then
+  if [ "$(which xterm)" ]; then
+  TERMINAL_CMD="xterm -e"
+  elif [ "$(which terminal)" ]; then
   TERMINAL_CMD="terminal -e"
   elif [ "$(which urxvt)" ]; then
   TERMINAL_CMD="urxvt -e"

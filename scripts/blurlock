@@ -2,7 +2,7 @@
 # /usr/bin/blurlock
 
 # take screenshot
-import -window root /tmp/screenshot.png
+scrot /tmp/screenshot.png
 
 # blur it
 convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png

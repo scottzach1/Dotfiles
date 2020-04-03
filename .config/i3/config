@@ -43,7 +43,7 @@ bindsym $mod+m bar mode toggle
 ######################
 
 exec --no-startup-id start-pulseaudio-x11
-exec --no-startup-id pa-applet
+# exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 #########################
@@ -339,32 +339,31 @@ client.background       $bg-color
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
+	i3bar_command i3bar
 
+	font pango:Inconsolata 10
+	position top
+	# tray_output none
+        status_command ~/.local/bin/bumblebee-status \
+		-m nic disk:home cpu memory battery date time pasink \
+		-p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/ \
+		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn cpu.left-click="termite -e htop" \
+		-t dracula-powerline
 
-    colors {
-        background $bg-color
-        statusline #F9FAF9
-        separator  #454947
-
-        #                  border             background         text
-        focused_workspace  $bg-color          $bg-color          $text-color
-        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-        active_workspace   #595B5B            #353836            #FDF6E3
-        binding_mode       #BD93F9            #2C2C2C            #F9FAF9
-    }
+	colors {
+        	background $bg-color
+	        statusline #F9FAF9
+        	separator  #454947
+	
+	        #                  border             background         text
+	        focused_workspace  $bg-color          $bg-color          $text-color
+	        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+	        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	        active_workspace   #595B5B            #353836            #FDF6E3
+	        binding_mode       #BD93F9            #2C2C2C            #F9FAF9
+	}
 }
 
 #############################

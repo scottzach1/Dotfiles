@@ -279,7 +279,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
 exec --no-startup-id start_conky_maia
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker . ~/dotfiles/scripts/blurlock
 exec --no-startup-id mullvad-vpn
 exec --no-startup-id insync
 exec_always --no-startup-id ff-theme-util

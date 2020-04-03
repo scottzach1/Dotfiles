@@ -278,7 +278,7 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id mullvad-vpn
 exec --no-startup-id insync
@@ -347,7 +347,7 @@ bar {
 	position top
 	# tray_output none
         status_command ~/.local/bin/bumblebee-status \
-		-m nic disk:home cpu memory battery date time pasink \
+		-m nic disk:home cpu2 memory battery date time brightness pasink \
 		-p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/ \
 		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn cpu.left-click="termite -e htop" \
 		-t dracula-powerline

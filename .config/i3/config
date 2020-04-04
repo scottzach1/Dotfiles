@@ -132,17 +132,17 @@ bindsym $mod+Ctrl+j workspace prev
 # Web
 set $ws1 "1:"
 # Terminal
-set $ws2 "2:"
+set $ws4 "4:"
 # Code
 set $ws3 "3:"
 # Git
-set $ws4 "4:"
+set $ws2 "2:"
 # Media
 set $ws5 "5:"
+# Download
+set $ws7 "7:" 
 # Chat
 set $ws6 "6:"
-# Download
-set $ws7 "7:"
 # Music
 set $ws8 "8:"
 

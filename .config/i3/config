@@ -351,7 +351,7 @@ bar {
 		-p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/ \
 		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn \
 		   cpu.left-click="termite -e htop" memory.format="{used}/{total}" time.format="%H:%M" \
-		   disk.format="{percent:.2f}%" cpu2.layout="cpu2.maxfreq cpu2.coresload" \
+		   disk.format="{percent:.2f}%" cpu2.layout="cpu2.maxfreq cpu2.cpuload cpu2.coresload" \
 		-t dracula-powerline
 
 	colors {

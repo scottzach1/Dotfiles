@@ -46,13 +46,18 @@ exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
-#########################
-### screen brightness ###
-#########################
+##########################
+### functionality keys ###
+##########################
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec enlighten +5%
 bindsym XF86MonBrightnessDown exec enlighten -5%
+
+# Audio volume cnotrols
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1000
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1000
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #########################
 ### window management ###
@@ -352,6 +357,7 @@ bar {
 		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn \
 		   cpu.left-click="termite -e htop" memory.format="{used}/{total}" time.format="%H:%M" \
 		   disk.format="{percent:.2f}%" cpu2.layout="cpu2.maxfreq cpu2.cpuload cpu2.coresload" \
+		   brightness.wheel-up="enlighten +5%" brightness.wheel-down="enlighten -5%" \
 		-t dracula-powerline
 
 	colors {

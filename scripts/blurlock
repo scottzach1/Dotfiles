@@ -1,6 +1,11 @@
 #!/bin/bash
 # /usr/bin/blurlock
 
+# dependencies:
+# extra/imagemagic
+# community/scrot
+# extra/i3lock
+
 # take screenshot
 scrot /tmp/screenshot.png
 

@@ -33,7 +33,7 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id . ~/dotfiles/scripts/dmenu_recency
+bindsym $mod+d exec dmenu-recency
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
@@ -215,7 +215,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 ######################
 
 # Lock screen
-bindsym $mod+Shift+x exec --no-startup-id . ~/dotfiles/scripts/blurlock
+bindsym $mod+Shift+x exec --no-startup-id blurlock
 bindsym $mod+Ctrl+x exec dm-tool lock
 
 # switch to workspace with urgent window automatically
@@ -284,7 +284,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
 # exec --no-startup-id start_conky_maia
-exec --no-startup-id xautolock -time 10 -locker . ~/dotfiles/scripts/blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id mullvad-vpn
 exec --no-startup-id insync
 exec_always --no-startup-id ff-theme-util
@@ -351,7 +351,7 @@ bar {
 	font pango:Inconsolata 10
 	position top
 	# tray_output none
-        status_command ~/.local/bin/bumblebee-status \
+        status_command bumblebee-status \
 		-m nic disk:home cpu2 memory battery date time brightness pasink \
 		-p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/ \
 		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn \

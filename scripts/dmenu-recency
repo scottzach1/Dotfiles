@@ -3,9 +3,7 @@
 # Originally based on code by Dieter Plaetinck.
 # Pretty much re-written by Mina Nagy (mnzaki)
 # Edited by Chrysostomus to create/source .dmenurc
-
-# dependencies
-# dmenu
+# Edited by Scottzach1 for Fish shell support.
 
 if ! [ -f "$HOME/.dmenurc" ]; then
 	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
@@ -13,14 +11,14 @@ fi
 . $HOME/.dmenurc
 
 if [ -z "$TERMINAL_CMD" ]; then
-  if [ "$(which xterm)" ]; then
+  if [ "$(which termite)" ]; then
+  TERMINAL_CMD="termite -e"
+  elif [ "$(which xterm)" ]; then
   TERMINAL_CMD="xterm -e"
   elif [ "$(which terminal)" ]; then
   TERMINAL_CMD="terminal -e"
   elif [ "$(which urxvt)" ]; then
   TERMINAL_CMD="urxvt -e"
-  elif [ "$(which termite)" ]; then
-  TERMINAL_CMD="termite -e"
   elif [ "$(which terminator)" ]; then
   TERMINAL_CMD="terminator -e"
   elif [ "$(which gnome-terminal)" ]; then
@@ -102,4 +100,4 @@ fi
 [[ "$type" = "background" ]] && exec $cmd
 [[ "$type" = "terminal" ]] && exec $TERMINAL_CMD "$cmd"
 [[ "$type" = "terminal_hold" ]] &&
-    exec $TERMINAL_CMD sh -c "$cmd && echo Press Enter to kill me... && read line"
+    exec $TERMINAL_CMD "fish -c \"$cmd && echo Press Enter to kill me... && read line\""

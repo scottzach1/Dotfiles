@@ -203,6 +203,7 @@ assign [class="Discord"] $ws6
 assign [class="Caprine"] $ws6
 assign [class="Deluge"] $ws7
 assign [class="Lollypop"] $ws8
+assign [class="Ncmpcpp"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1

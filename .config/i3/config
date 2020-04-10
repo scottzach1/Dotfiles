@@ -359,12 +359,13 @@ bar {
 	position top
 	# tray_output none
         status_command bumblebee-status \
-		-m nic disk:home cpu2 memory battery date time brightness pasink \
+		-m nic disk:home cpu2 memory brightness pasink mpd date time battery \
 		-p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/ \
 		   nic.left-click="nm-connection-editor" nic.right-click=mullvad-vpn \
 		   cpu.left-click="termite -e htop" memory.format="{used}/{total}" time.format="%H:%M" \
 		   disk.format="{percent:.2f}%" cpu2.layout="cpu2.maxfreq cpu2.cpuload cpu2.coresload" \
 		   brightness.wheel-up="enlighten +5%" brightness.wheel-down="enlighten -5%" \
+		   mpd.format="{albumartist} - {title}" mpd.layout="mpd.prev mpd.main mpd.next" \
 		-t dracula-powerline
 
 	colors {

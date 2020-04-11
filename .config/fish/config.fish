@@ -7,6 +7,7 @@
 #       Zac Scott (github.com/scottzach1)
 #
 # Fish Config
+
 set editor "nvim"
 set term "termite"
 
@@ -30,3 +31,4 @@ alias v=nvim
 alias p='mpc toggle'
 alias n='mpc next'
 alias pr='mpc prev'
+alias s='mpc status'

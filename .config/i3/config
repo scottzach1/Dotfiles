@@ -8,6 +8,10 @@
 #
 # i3 config file
 
+##==========================================##                         
+#                           *** Binding specific settings ***                     #
+##=======================================##
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -45,17 +49,17 @@ bindsym $mod+d exec dmenu-recency
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-######################
-### sound-section  ###
-######################
+##==========================================##                         
+#                           *** Sound specific settings ***                       #
+##=======================================##
 
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
-##########################
-### functionality keys ###
-##########################
+##==========================================##
+#                           *** Multimedia specific settings ***                  #
+##=======================================##
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec enlighten +5%
@@ -72,9 +76,9 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-#########################
-### window management ###
-#########################
+##==========================================##
+#                           *** Window specific settings ***                      #
+##=======================================##
 
 # Start Applications
 bindsym $mod+t exec --no-startup-id pkill compton
@@ -138,9 +142,9 @@ bindsym $mod+Ctrl+semicolon workspace next
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+j workspace prev
 
-###############################
-### workspace configuration ###
-###############################
+##==========================================##
+#                           *** Workspace specific settings ***                   #
+##=======================================##
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -194,9 +198,9 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
-######################################
-### default application workspaces ###
-######################################
+##==========================================##
+#                           *** Application specific settings ***                 #
+##=======================================##
 
 # Open applications on specific workspaces
 assign [class="IntelliJ"] $ws2
@@ -224,9 +228,9 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
-######################
-### other bindings ###
-######################
+##==========================================##
+#                           *** Other binding specific settings ***               #
+##=======================================##
 
 # Lock screen
 bindsym $mod+Shift+x exec --no-startup-id blurlock
@@ -287,9 +291,9 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-############################
-### startup applications ###
-############################
+##==========================================##
+#                           *** App startup specific settings ***                 #
+##=======================================##
 
 exec --no-startup-id ./unlock.sh # decrypt bitlocker drives
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -304,9 +308,9 @@ exec --no-startup-id insync
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-#####################
-### system colors ###
-#####################
+##==========================================##
+#                           *** Color specific settings ***                       #
+##=======================================##
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -356,6 +360,10 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   	$text-color      
 
 client.background       $bg-color
 
+##==========================================##
+#                           *** Status bar specific settings ***                  #
+##=======================================##
+
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 
@@ -389,9 +397,9 @@ bar {
 	}
 }
 
-#############################
-### settings for i3-gaps: ###
-#############################
+##==========================================##
+#                           *** i3-gaps specific settings ***                     #
+##=======================================##
 
 # Set inner/outer gaps
 gaps inner 8

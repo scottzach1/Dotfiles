@@ -302,7 +302,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
 # exec --no-startup-id start_conky_maia
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners +0-0
 exec --no-startup-id mullvad-vpn
 exec --no-startup-id insync
 exec_always --no-startup-id ff-theme-util
@@ -380,7 +380,7 @@ bar {
 		   cpu.left-click="termite -e htop" memory.format="{used}/{total}" time.format="%H:%M" \
 		   disk.format="{percent:.2f}%" cpu2.layout="cpu2.maxfreq cpu2.cpuload cpu2.coresload" \
 		   brightness.wheel-up="enlighten +5%" brightness.wheel-down="enlighten -5%" \
-		   mpd.format="{albumartist} - {title}" mpd.layout="mpd.prev mpd.main mpd.next" \
+		   mpd.format="{albumartist} - {title}" mpd.layout="mpd.prev mpd.main mpd.next mpd.shuffle mpd.repeat" \
 		-t dracula-powerline
 
 	colors {

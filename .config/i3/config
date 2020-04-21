@@ -227,6 +227,8 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="jetbrains-idea" title="win0"] floating enable
+for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
 ##==========================================##
 #                           *** Other binding specific settings ***               #

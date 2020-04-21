@@ -9,7 +9,7 @@
 # Fish Config
 
 set editor "nvim"
-set term "termite"
+set term "alacritty"
 
 # No greeting when starting an interactive shell.
 function fish_greeting
@@ -22,7 +22,33 @@ end
 
 # Navigation
 alias ..='cd ../'
-alias ...='cd ../../'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Listing
+alias ll='ls -l'           # list files      
+alias la='ls -Al'          # show hidden files
+alias lx='ls -lXB'         # sort by extension
+alias lk='ls -lSr'         # sort by size, biggest last
+alias lc='ls -ltcr'        # sort by and show change time, most recent last
+alias lu='ls -ltur'        # sort by and show access time, most recent last
+alias lt='ls -ltr'         # sort by date, most recent last
+alias lm='ls -al |more'    # pipe through 'more'
+alias lr='ls -lR'          # recursive ls
+
+
+# Interactive
+alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+
+# Git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add .'
+alias gc='git commit'
+alias gp='git push'
 
 # Editor
 alias v=nvim

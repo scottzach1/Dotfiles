@@ -11,7 +11,9 @@ fi
 . $HOME/.dmenurc
 
 if [ -z "$TERMINAL_CMD" ]; then
-  if [ "$(which termite)" ]; then
+  if [ "$(which alacritty)" ]; then
+  TERMINAL_CMD="alacritty -e"
+  elif [ "$(which termite)" ]; then
   TERMINAL_CMD="termite -e"
   elif [ "$(which xterm)" ]; then
   TERMINAL_CMD="xterm -e"

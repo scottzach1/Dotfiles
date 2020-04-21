@@ -21,9 +21,9 @@ if test -n "$DESKTOP_SESSION"
 end
 
 # Navigation
-alias ..='cd ../'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+abbr -a '..'   'cd ../'
+abbr -a '...'  'cd ../..'
+abbr -a '....' 'cd ../../..'
 
 # Listing
 alias ll='ls -l'           # list files      
@@ -36,24 +36,18 @@ alias lt='ls -ltr'         # sort by date, most recent last
 alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 
-
-# Interactive
-alias mv='mv -i'
-alias rm='rm -i'
-alias cp='cp -i'
-
 # Git
-alias g='git'
-alias gs='git status'
-alias gp='git push'
+abbr -a 'g'  'git'
+abbr -a 'gs' 'git status'
+abbr -a 'gp' 'git push'
 abbr -a 'ga' 'git add'
 abbr -a 'gc' 'git commit'
 
 # Editor
-alias v=nvim
+abbr -a 'v' 'nvim'
 
 # Music
-alias p='mpc toggle'
-alias n='mpc next'
-alias pr='mpc prev'
-alias s='mpc status'
+abbr -a 'p'   'mpc toggle'
+abbr -a 'n'   'mpc next'
+abbr -a 'pr'  'mpc prev'
+abbr -a 'mpc' 'status'

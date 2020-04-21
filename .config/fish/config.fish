@@ -45,10 +45,9 @@ alias cp='cp -i'
 # Git
 alias g='git'
 alias gs='git status'
-alias ga='git add'
-alias gaa='git add .'
-alias gc='git commit'
 alias gp='git push'
+abbr -a 'ga' 'git add'
+abbr -a 'gc' 'git commit'
 
 # Editor
 alias v=nvim

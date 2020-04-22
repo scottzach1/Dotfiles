@@ -20,6 +20,10 @@ if test -n "$DESKTOP_SESSION"
     set (gnome-keyring-daemon --start | string split "=")
 end
 
+# Sudo
+abbr -a 's'  'sudo'
+abbr -a 'sv' 'sudo nvim'
+
 # Navigation
 abbr -a '..'   'cd ../'
 abbr -a '...'  'cd ../..'
@@ -37,11 +41,14 @@ alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 
 # Git
-abbr -a 'g'  'git'
-abbr -a 'gs' 'git status'
-abbr -a 'gp' 'git push'
-abbr -a 'ga' 'git add'
-abbr -a 'gc' 'git commit'
+abbr -a 'g'   'git'
+abbr -a 'gs'  'git status'
+abbr -a 'gp'  'git push'
+abbr -a 'ga'  'git add'
+abbr -a 'gc'  'git commit'
+abbr -a 'gf'  'git fetch --all'
+abbr -a 'gch' 'git checkout'
+abbr -a 'gpu' 'git pull'
 
 # Editor
 abbr -a 'v' 'nvim'

@@ -154,11 +154,11 @@ bindsym $mod+Ctrl+j workspace prev
 # Web
 set $ws1 "1:"
 # Terminal
-set $ws4 "4:"
+set $ws4 "2:"
 # Code
 set $ws3 "3:"
 # Git
-set $ws2 "2:"
+set $ws2 "4:"
 # Media
 set $ws5 "5:"
 # Download

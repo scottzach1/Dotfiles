@@ -26,15 +26,15 @@ abbr -a '...'  'cd ../..'
 abbr -a '....' 'cd ../../..'
 
 # Listing
-alias ll='ls -l'           # list files      
-alias la='ls -Al'          # show hidden files
-alias lx='ls -lXB'         # sort by extension
-alias lk='ls -lSr'         # sort by size, biggest last
-alias lc='ls -ltcr'        # sort by and show change time, most recent last
-alias lu='ls -ltur'        # sort by and show access time, most recent last
-alias lt='ls -ltr'         # sort by date, most recent last
-alias lm='ls -al |more'    # pipe through 'more'
-alias lr='ls -lR'          # recursive ls
+abbr -a 'll' 'ls -l'         # list files      
+abbr -a 'la' 'ls -Al'        # show hidden files
+abbr -a 'lx' 'ls -lXB'       # sort by extension
+abbr -a 'lk' 'ls -lSr'       # sort by size, biggest last
+abbr -a 'lc' 'ls -ltcr'      # sort by and show change time, most recent last
+abbr -a 'lu' 'ls -ltur'      # sort by and show access time, most recent last
+abbr -a 'lt' 'ls -ltr'       # sort by date, most recent last
+abbr -a 'lm' 'ls -al | more' # pipe through 'more'
+abbr -a 'lr' 'ls -lR'        # recursive ls
 
 # Git
 abbr -a 'g'  'git'

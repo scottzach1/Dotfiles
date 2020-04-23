@@ -307,6 +307,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners +0-0
 exec --no-startup-id mullvad-vpn
 exec --no-startup-id insync
+exec --no-startup-id nextcloud
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 

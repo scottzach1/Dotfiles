@@ -45,7 +45,10 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec dmenu-recency
+bindsym $mod+d exec rofi -show run
+
+# start window selector
+bindsym $mod+c exec rofi -show window
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle

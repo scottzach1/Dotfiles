@@ -17,3 +17,6 @@
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
+
+rofi.run-command: fish -c '{cmd}'
+rofi.run-list-command: 'fish -c functions'

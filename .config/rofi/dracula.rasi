@@ -1,14 +1,10 @@
-/* Dracula colors https://gist.github.com/EgZvor */
+// Dracula colors Adapted From: https://gist.github.com/EgZvor
 * {
-    opaque: 	rgba ( 40, 42, 54, 0 % );
-    gray: 	rgba ( 68, 71, 90, 100 % );
-    light-gray: 	rgba ( 98, 114, 164, 100 % );
-
-    white: 	rgba ( 248, 248, 242, 100 % );
     background: 	rgba ( 40, 42, 54, 100 % );
     current-line: 	rgba ( 68, 71, 90, 100 % );
     selection: 	rgba ( 68, 71, 90, 100 % );
     foreground: 	rgba ( 248, 248, 242, 100 % );
+    comment: 	rgba ( 98, 114, 164, 100 % );
     cyan: 	rgba ( 139, 233, 253, 100 % );
     green: 	rgba ( 80, 250, 123, 100 % );
     orange: 	rgba ( 255, 184, 108, 100 % );
@@ -18,124 +14,108 @@
     yellow: 	rgba ( 241, 250, 140, 100 % );
 }
 * {
-    normal-foreground:              @purple;
-    normal-background:              @gray;
-
-    active-foreground:              @purple;
-
-    selected-normal-foreground:     @pink;
-    selected-normal-background:     @gray;
-
+    selected-normal-background:     @cyan;
+    selected-normal-foreground:     @normal-background;
+    normal-background:              @background;
+    normal-foreground:              @foreground;
+    active-foreground:              @selected-normal-background;
     alternate-normal-background:    @normal-background;
-    alternate-normal-foreground:    @normal-foreground;
-
+    alternate-normal-foreground:    @foreground;
     urgent-foreground:              @red;
     urgent-background:              @normal-background;
-
     alternate-urgent-background:    @urgent-background;
     alternate-urgent-foreground:    @urgent-foreground;
-
     selected-active-foreground:     @selected-normal-foreground;
-    selected-active-background:     @normal-background;
-
+    selected-active-background:     @selected-normal-background;
     selected-urgent-background:     @normal-background;
-    selected-urgent-foreground:     @selected-normal-foreground;
-
-    alternate-active-foreground:    @normal-foreground;
     alternate-active-background:    @normal-background;
-
-    border-color:                   @opaque;
-    separatorcolor:                 @opaque;
-
+    alternate-active-foreground:    @selected-normal-background;
+    border-color:                   @selected-normal-background;
+    separatorcolor:                 @border-color;
     spacing: 2;
     background-color: @normal-background;
 }
-window {
-    background-color: transparent;
-    border:  0;
-    padding: 0;
-    margin:  0;
+#window {
+    border:           3;
+    padding:          9;
 }
-mainbox {
+#mainbox {
     background-color: inherit;
     border:  0;
     padding: 0;
 }
-element {
+#textbox {
+    text-color: @foreground;
+}
+#element {
     border:  0;
     padding: 1px ;
 }
-element.normal.normal {
+#element.normal.normal {
     background-color: @normal-background;
     text-color:       @normal-foreground;
 }
-element.normal.urgent {
+#element.normal.urgent {
     background-color: @urgent-background;
     text-color:       @urgent-foreground;
 }
-element.normal.active {
+#element.normal.active {
     background-color: @active-background;
     text-color:       @active-foreground;
 }
-element.selected.normal {
+#element.selected.normal {
     background-color: @selected-normal-background;
     text-color:       @selected-normal-foreground;
 }
-element.selected.urgent {
+#element.selected.urgent {
     background-color: @selected-urgent-background;
     text-color:       @selected-urgent-foreground;
 }
-element.selected.active {
+#element.selected.active {
     background-color: @selected-active-background;
     text-color:       @selected-active-foreground;
 }
-element.alternate.normal {
+#element.alternate.normal {
     background-color: @alternate-normal-background;
     text-color:       @alternate-normal-foreground;
 }
-element.alternate.urgent {
+#element.alternate.urgent {
     background-color: @alternate-urgent-background;
     text-color:       @alternate-urgent-foreground;
 }
-element.alternate.active {
+#element.alternate.active {
     background-color: @alternate-active-background;
     text-color:       @alternate-active-foreground;
 }
-scrollbar {
+#scrollbar {
     border:       0;
 }
-button.selected {
+#button.selected {
     background-color: @selected-normal-background;
     text-color:       @selected-normal-foreground;
 }
-inputbar {
+#inputbar {
     spacing:    0;
     text-color: @normal-foreground;
-    background-color: @normal-background;
-    padding:    10px ;
-    margin: 5px ;
-    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+    background-color: inherit;
+    padding:    1px ;
+    children:   [prompt, textbox-prompt-colon, entry, case-indicator];
 }
-listview {
-    padding: 10px;
-    margin: 5px;
-}
-case-indicator {
+#case-indicator {
     spacing:    0;
     text-color: @normal-background;
 }
-entry {
+#entry {
     spacing:    0;
     text-color: @normal-foreground;
 }
-prompt {
+#prompt {
     spacing:    0;
     text-color: @normal-foreground;
-    enabled: true;
 }
-textbox-prompt-colon {
-     text-color: inherit;
-     expand: false;
-     margin: 0 0em 0em 0em;
-     str: ": ";
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
 }

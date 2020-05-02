@@ -9,16 +9,16 @@
 # Fish Config
 
 set editor "nvim"
-set term "alacritty"
+set term "kitty"
 
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
 
 # Init Gnome keyring daemon.
-if test -n "$DESKTOP_SESSION"
-    set (gnome-keyring-daemon --start | string split "=")
-end
+# if test -n "$DESKTOP_SESSION"
+#    set (gnome-keyring-daemon --start | string split "=")
+#end
 
 # Sudo
 abbr -a 's'  'sudo'
@@ -59,4 +59,4 @@ abbr -a 'v' 'nvim'
 abbr -a 'p'   'mpc toggle'
 abbr -a 'n'   'mpc next'
 abbr -a 'pr'  'mpc prev'
-abbr -a 'mpc' 'status'
+abbr -a 'ms'  'mpc status'

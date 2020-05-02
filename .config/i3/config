@@ -58,7 +58,9 @@ bindsym $mod+m bar mode toggle
 ##=======================================##
 
 exec --no-startup-id start-pulseaudio-x11
-# exec --no-startup-id pa-applet
+#configure, has nice window mods, you won't understand what I'm saying until you install it and try it first hand so just go for it, risk free :) my BSPWM
+
+￼ exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ##==========================================##

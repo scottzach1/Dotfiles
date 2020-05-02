@@ -1,14 +1,22 @@
-/* Dracula colors https://gist.github.com/EgZvor */
+/* Dracula colors */
 * {
-    opaque: 	rgba ( 40, 42, 54, 0 % );
+    /* black: 	rgba ( 40, 42, 54, 100 % ); */
     gray: 	rgba ( 68, 71, 90, 100 % );
     light-gray: 	rgba ( 98, 114, 164, 100 % );
+    /* cyan: 	rgba ( 139, 233, 253, 100 % ); */
+    /* green: 	rgba ( 80, 250, 123, 100 % ); */
+    /* orange: 	rgba ( 255, 184, 108, 100 % ); */
+    /* pink: 	rgba ( 255, 121, 198, 100 % ); */
+    /* purple: 	rgba ( 189, 147, 249, 100 % ); */
+    /* red: 	rgba ( 255, 85, 85, 100 % ); */
+    /* yellow: 	rgba ( 241, 250, 140, 100 % ); */
 
     white: 	rgba ( 248, 248, 242, 100 % );
     background: 	rgba ( 40, 42, 54, 100 % );
     current-line: 	rgba ( 68, 71, 90, 100 % );
     selection: 	rgba ( 68, 71, 90, 100 % );
     foreground: 	rgba ( 248, 248, 242, 100 % );
+    /* comment: 	rgba ( 98, 114, 164, 100 % ); */
     cyan: 	rgba ( 139, 233, 253, 100 % );
     green: 	rgba ( 80, 250, 123, 100 % );
     orange: 	rgba ( 255, 184, 108, 100 % );
@@ -21,7 +29,7 @@
     normal-foreground:              @purple;
     normal-background:              @gray;
 
-    active-foreground:              @purple;
+    active-foreground:              @pink;
 
     selected-normal-foreground:     @pink;
     selected-normal-background:     @gray;
@@ -41,20 +49,20 @@
     selected-urgent-background:     @normal-background;
     selected-urgent-foreground:     @selected-normal-foreground;
 
-    alternate-active-foreground:    @normal-foreground;
+    alternate-active-foreground:    @selected-active-foreground;
     alternate-active-background:    @normal-background;
 
-    border-color:                   @opaque;
-    separatorcolor:                 @opaque;
+    border-color:                   @selected-normal-foreground;
+    separatorcolor:                 @border-color;
 
     spacing: 2;
     background-color: @normal-background;
 }
 window {
     background-color: transparent;
-    border:  0;
-    padding: 0;
-    margin:  0;
+    border:           0;
+    padding:          0;
+    margin: 0;
 }
 mainbox {
     background-color: inherit;

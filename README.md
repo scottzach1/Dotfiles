@@ -5,10 +5,16 @@ use on my Linux machines.
 
 In the future I will try to automate with a script and list all required dependencies.
 
-## Screenshot
+## Screenshot i3wm + bumblebee status
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/rice.png">
+</p>
+
+## Screenshot bspwm + polybar
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/desktop-rice.png">
 </p>
 
 ## Author

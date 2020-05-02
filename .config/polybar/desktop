@@ -68,13 +68,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = FontAwesome:pixelsize=10;0
-font-1 = FontAwesome5Free:style=Solid:size=10;4
-font-2 = FontAwesome5Free:style=Regular:size=10;4
-font-3 = FontAwesome5Brands:style=Regular:size=10;4
-font-4 = fixed:pixelsize=10;1
-font-5 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-6 = siji:pixelsize=10;1
+font-0 = FiraCode Nerd Font:pixelsize=10;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
 modules-center = window-title
@@ -164,41 +160,15 @@ type = internal/pulseaudio
 ; Default: true
 use-ui-max = true
 
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
-interval = 5
-
-; Available tags:
-;   <label-volume> (default)
-;   <ramp-volume>
-;   <bar-volume>
 format-volume = %{A3:pavucontrol &:}%{A2:pactl set-sink-volume @DEFAULT_SINK@ 100%:}<ramp-volume> <label-volume>%{A}%{A}
 
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-;format-muted = <label-muted>
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-;label-volume = %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-label-muted = %{A3:pavucontrol &:} %percentage%%%{A}
+label-muted = %{A3:pavucontrol &:}ﱝ %percentage%%%{A}
 label-muted-foreground = ${colors.foreground}
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-; Right and Middle click (unreleased)
-;click-right = pavucontrol &
-;click-middle =
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
 
 format-volume-background = ${colors.yellow}
 format-volume-foreground = ${colors.background}
@@ -211,17 +181,17 @@ format-muted-foreground = ${colors.background}
 type = internal/mpd
 
 ;format-online = help me
-format-playing = %{A3:kitty ncmpcpp &:}%{A2:kitty ncmpcpp --screen visualizer &:}<icon-prev> <icon-stop> %{A1:mpc toggle:} <toggle> <label-song>%{A} <icon-next>%{A}%{A}
+format-playing = %{A3:kitty ncmpcpp &:}%{A2:kitty ncmpcpp --screen visualizer &:}<icon-prev> <icon-stop>%{A1:mpc toggle:} <toggle> <label-song>%{A} <icon-next>%{A}%{A}
 format-paused = ${self.format-playing}
 format-stopped = %{A3:kitty ncmpcpp &:}<icon-play>%{A}
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-icon-repeat = 
-icon-random = 
+icon-prev = 玲
+icon-stop = 栗
+icon-play = 契
+icon-pause = 
+icon-next = 怜
+icon-repeat = 凌
+icon-random = 咽
 
 toggle-on-foreground = ${colors.foreground}
 toggle-off-foreground = #656066
@@ -239,14 +209,14 @@ format-online-background = ${colors.selection}
 ;
 
 [module/window-title]
-interval = 1
-
 type = custom/script
 exec = xtitle $(bspc query -N -n)
 
+interval = 1
+
 [module/vpn-connected]
 type = custom/script
-exec = ~/.config/polybar/scripts/vpn-connected.sh
+exec = ~/.config/polybar/scripts/desktop/vpn-connected.sh
 
 format-background = ${colors.green}
 format-foreground = ${colors.background}
@@ -258,7 +228,7 @@ click-right = "mullvad-vpn &"
 
 [module/vpn-connecting]
 type = custom/script
-exec = ~/.config/polybar/scripts/vpn-connecting.sh
+exec = ~/.config/polybar/scripts/desktop/vpn-connecting.sh
 
 format-background = ${colors.yellow}
 format-foreground = ${colors.background}
@@ -268,7 +238,7 @@ click-right = "mullvad-vpn &"
 
 [module/vpn-disconnected]
 type = custom/script
-exec = ~/.config/polybar/scripts/vpn-disconnected.sh
+exec = ~/.config/polybar/scripts/desktop/vpn-disconnected.sh
 
 format-background = ${colors.red}
 format-foreground = ${colors.foreground}
@@ -278,50 +248,11 @@ click-right = "mullvad-vpn &"
 
 [module/wlan]
 type = internal/network
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
 interface = wlp6s0
 
-; Seconds to sleep between updates
-; Default: 1
-;interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-;udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-;accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have
-; an unknown state, even when they are running
-; Default: false
-;unknown-as-up = true
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
+format-connected =   <label-connected>
 format-disconnected = <label-disconnected>
 
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
 format-packetloss = <label-packetloss> <label-connected>
 
 ; All labels support the following tokens:
@@ -333,77 +264,21 @@ format-packetloss = <label-packetloss> <label-connected>
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
+label-connected = %essid% up %local_ip%
+label-packetloss =  %essid% up %local_ip%
 
-; Default: %ifname% %local_ip%
-label-connected = %essid% up %local_ip% %downspeed:9%
-label-connected-foreground = #eefafafa
-
-; Default: (none)
-;label-disconnected = not connected
-label-disconnected-foreground = #66ffffff
-
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
-
+format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.comment}
-format-disconnected-background = ${colors.red}
+format-packetloss-foreground = ${colors.background}
+format-packetloss-background = ${colors.orange}
 
 [module/eth]
 type = internal/network
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
 interface = enp5s0
 
-; Seconds to sleep between updates
-; Default: 1
-;interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-;udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-;accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have
-; an unknown state, even when they are running
-; Default: false
-;unknown-as-up = true
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
 format-connected =  <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
 format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss =   <label-packetloss> <label-connected>
+format-packetloss =   <ramp-signal> <label-connected>
 
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]
@@ -414,34 +289,17 @@ format-packetloss =   <label-packetloss> <label-connected>
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-
-; Default: %ifname% %local_ip%
 label-connected = %ifname% up %local_ip% %downspeed:9%
-;label-connected = %essid% up %local_ip% %downspeed:9%
-;label-connected-foreground = #eefafafa
 
-; Default: (none)
-;label-disconnected = not connected
-;label-disconnected-foreground = #66ffffff
-
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
-
-format-disconnected-background = ${colors.red}
+format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.comment}
+format-packetloss-foreground = ${colors.background}
+format-packetloss-background = ${colors.orange}
+
 
 [module/updates-aur]
 type = custom/script
-exec = ~/.config/polybar/scripts/updates-arch-aur.sh
+exec = ~/.config/polybar/scripts/desktop/updates-arch-aur.sh
 interval = 600
 
 format-foreground = ${colors.background}
@@ -501,7 +359,7 @@ format-mounted-background = ${colors.comment}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-foreground = ${colors.background}
 format-background = ${colors.green}
 label = %{A1:kitty htop &:}%gb_used%/%gb_total%%{A}
@@ -509,23 +367,11 @@ label = %{A1:kitty htop &:}%gb_used%/%gb_total%%{A}
 [module/cpu]
 type = internal/cpu
 
-; Seconds to sleep between updates
-; Default: 1
 interval = 0.5
 
-; Available tags:
-;   <label> (default)
-;   <bar-load>
-;   <ramp-load>
-;   <ramp-coreload>
 format = %{A1:kitty htop &:}<label> <ramp-coreload>%{A}
 
-; Available tokens:
-;   %percentage% (default) - total cpu load averaged over all cores
-;   %percentage-sum% - Cumulative load on all cores
-;   %percentage-cores% - load percentage for each core
-;   %percentage-core[1-9]% - load percentage for specific core
-label =  %percentage%%
+label =  %percentage%%
 
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 0
@@ -549,7 +395,7 @@ interval = 1.0
 
 ; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date =  %a, %b %e %Y    %H:%M
+date =  %a, %b%e %Y    %H:%M
 
 format-background = ${colors.selection}
 
@@ -561,11 +407,9 @@ screenchange-reload = true
 ;compositing-border = over
 ;pseudo-transparency = false
 
-format-margin = 1
-format-padding = 3
+format-margin = 0
+format-padding = 2
 
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-
-; vim:ft=dosini

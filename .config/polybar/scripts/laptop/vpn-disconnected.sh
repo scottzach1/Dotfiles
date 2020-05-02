@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if ! mullvad status | grep -q 'Connect'; then
-    echo " vpn disconnected"
+    echo " "
 else
     echo ""
 fi

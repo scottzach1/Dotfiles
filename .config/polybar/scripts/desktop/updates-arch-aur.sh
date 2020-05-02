@@ -5,7 +5,7 @@ if ! updates=$(yay -Qu 2> /dev/null | wc -l); then
 fi
 
 if [ "$updates" -gt 0 ]; then
-    echo " $updates updates"
+    echo "  $updates updates"
 else
-    echo " up to date"
+    echo "  up to date"
 fi

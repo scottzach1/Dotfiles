@@ -21,6 +21,7 @@ call plug#end()
 
 set relativenumber
 set nu rnu
+set mouse=a
 
 map <C-o> :NERDTreeToggle<CR>
 map ; :Files<CR>

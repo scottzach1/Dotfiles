@@ -16,7 +16,6 @@ deluge
 deluge-gtk
 discord
 dunst
-eclipse-java
 efibootmgr
 fakeroot
 fd

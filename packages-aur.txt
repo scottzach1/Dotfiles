@@ -1,6 +1,7 @@
 ant-dracula-gtk-theme
 betterlockscreen
 cava
+eclipse-java
 insync
 intellij-idea-ultimate-edition
 intellij-idea-ultimate-edition-jre
@@ -8,6 +9,7 @@ lightdm-settings
 lightdm-slick-greeter
 mpd-mpris
 mullvad-vpn
+otf-nerd-fonts-fira-code
 polybar
 pycharm-professional
 siji-git

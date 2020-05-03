@@ -3,7 +3,6 @@ arandr
 atom
 autoconf
 automake
-awesome-terminal-fonts
 base
 binutils
 bison
@@ -16,7 +15,6 @@ deluge
 deluge-gtk
 discord
 dunst
-eclipse-java
 efibootmgr
 fakeroot
 fd
@@ -89,7 +87,6 @@ thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
 ttf-dejavu
-ttf-font-awesome
 ttf-liberation
 tumbler
 unzip

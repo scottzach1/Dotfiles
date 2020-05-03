@@ -64,7 +64,7 @@ start-pulseaudio-x11 &
 startup "nm-applet"       "nm-applet"
 startup "picom"           "picom -b"
 startup "mullvad-vpn"     "mullvad-vpn"
-startup "insync"          "insync"
+startup "insync"          "insync start"
 startup "nextcloud"       "nextcloud"
 startup "blueman-applet"  "blueman-applet"
 startup "mpd-mpris"       "mpd-mpris"

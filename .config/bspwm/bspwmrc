@@ -46,6 +46,12 @@ bspc config focused_border_color "#8be9fd"
 bspc rule -a "File Transfer" state=floating
 bspc rule -a class_name="jetbrains-idea" instancename="win0" state=floating
 
+# https://wiki.archlinux.org/index.php/GNOME/Keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
 sh $HOME/.config/polybar/launch.sh
 
 ##==========================================##
@@ -77,3 +83,4 @@ nitrogen --restore &
 wmname LG3D &
 export _JAVA_AWT_WM_NONREPARTENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+

@@ -30,6 +30,7 @@ gawk
 gcc
 gettext
 git
+gnome-keyring
 gparted
 grep
 groff
@@ -53,6 +54,7 @@ m4
 make
 man-db
 man-pages
+maven
 mesa-vdpau
 mousepad
 mpc
@@ -64,6 +66,7 @@ network-manager-applet
 networkmanager
 nitrogen
 os-prober
+otf-fira-code
 pacman
 papirus-icon-theme
 patch
@@ -71,6 +74,7 @@ pavucontrol
 picom
 pkgconf
 playerctl
+polkit-gnome
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth

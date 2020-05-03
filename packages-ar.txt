@@ -64,7 +64,6 @@ network-manager-applet
 networkmanager
 nitrogen
 os-prober
-otf-fira-code
 pacman
 papirus-icon-theme
 patch

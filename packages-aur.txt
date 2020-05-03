@@ -1,7 +1,5 @@
 ant-dracula-gtk-theme
 betterlockscreen
-cava
-eclipse-java
 insync
 intellij-idea-ultimate-edition
 intellij-idea-ultimate-edition-jre

@@ -8,7 +8,7 @@ In the future I will try to automate with a script and list all required depende
 ## Screenshot laptop w/ bspwm + polybar
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/laptop-i3wm.png">
+<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/laptop-bspwm.png">
 </p>
 
 ## Screenshot laptop w/ i3wm + bumblebee status

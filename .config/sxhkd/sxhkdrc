@@ -175,19 +175,22 @@ super + shift + s
 #                      *** Multimedia key binding settings ***                    #
 ##=======================================##
 
-# Screen brightness controls (enlighten)
+# Screen brightness controls
 XF86MonBrightnessUp
-	enlighten +5%
+	xbacklight -inc 5
 XF86MonBrightnessDown
-	enlighten -5%
+	xbacklight -dec 5
 
 # Audio volume cnotrols (pulseaudio)
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +1000
+	amixer set Master 5%+
+	# pactl set-sink-volume @DEFAULT_SINK@ +1000
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -1000
+	amixer set Master 5%-
+	# pactl set-sink-volume @DEFAULT_SINK@ -1000
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	amixer set Master toggle
+	# pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media Control (playerctl)
 XF86AudioPlay

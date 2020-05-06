@@ -10,13 +10,16 @@
 
 set editor "nvim"
 set term "kitty"
+	
+set -x EDITOR /usr/bin/nvim
+set -x BROWSER /usr/bin/chromium
+set -x TERMINAL /usr/bin/kitty
+set -x QT_STYLE_OVERRIDE gtk2
+set -x QT_QPA_PLATFORMTHEM gtk2
 
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
-
-#
-set -u fish_user_paths ~/.profile /etc/profile
 
 # Init Gnome keyring daemon.
 if test -n "$DESKTOP_SESSION"

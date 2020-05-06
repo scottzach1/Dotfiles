@@ -63,7 +63,8 @@ init_keyring() {
 eval 'init_keyring' &
 
 sh $HOME/.config/polybar/launch.sh &
-sh $HOME/unlock.sh > /dev/null &
+sh $HOME/unlock.sh > /dev/null & # Unlock encrypted drives.
+sh $HOME/init.sh > /dev/null & # Init display with correct resolution.
 
 startup() {
 	# If process matches $1, execute $2

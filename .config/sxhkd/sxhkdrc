@@ -1,3 +1,4 @@
+#!/bin/fish
 #                 _   _                 _     _
 #   ___  ___ ___ | |_| |_ ______ _  ___| |__ / |
 #  / __|/ __/ _ \| __| __|_  / _` |/ __| '_ \| |
@@ -34,8 +35,8 @@ super + alt + p
 	sh $HOME/.config/polybar/launch.sh
 
 # quit/restart picom
-super alt {_,shift +}t
-	{pkill picom, picom -b} &
+super + alt + t
+	if pgrep picom; pkill picom; else; picom -b; end;
 
 # lockscreen
 super + shift + x
@@ -102,8 +103,8 @@ super + {_,shift + }{j,k,l,semicolon}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 #super + {_,shift + }c

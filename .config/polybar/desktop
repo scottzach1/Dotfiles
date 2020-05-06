@@ -66,19 +66,18 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 font-0 = FiraCode Nerd Font:pixelsize=10;0
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
 modules-center = window-title
-;modules-right = xbacklight pulseaudio memory cpu wlan eth wifi battery temperature date powermenu
 modules-right = mpd pulseaudio vpn-connected vpn-connecting vpn-disconnected wlan eth updates-aur filesystem memory cpu date
 
 tray-position = right
-tray-padding = 2
+tray-padding = 0
 tray-background = ${colors.selection}
 
 wm-restack = bspwm
@@ -264,8 +263,8 @@ format-packetloss = <label-packetloss> <label-connected>
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-label-connected = %essid% up %local_ip%
-label-packetloss =  %essid% up %local_ip%
+label-connected = %essid% up %local_ip% | %downspeed%  %upspeed%
+label-packetloss =  %essid% up %local_ip%  | %downspeed%  %upspeed%
 
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.comment}
@@ -289,7 +288,7 @@ format-packetloss =   <ramp-signal> <label-connected>
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-label-connected = %ifname% up %local_ip% %downspeed:9%
+label-connected = %ifname% up %local_ip%  | %downspeed%  %upspeed%
 
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.comment}
@@ -359,7 +358,7 @@ format-mounted-background = ${colors.comment}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-foreground = ${colors.background}
 format-background = ${colors.green}
 label = %{A1:kitty htop &:}%gb_used%/%gb_total%%{A}
@@ -408,7 +407,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 format-margin = 0
-format-padding = 2
+format-padding = 1
 
 [global/wm]
 margin-top = 5

@@ -15,10 +15,13 @@ set term "kitty"
 function fish_greeting
 end
 
+#
+set -u fish_user_paths ~/.profile /etc/profile
+
 # Init Gnome keyring daemon.
-# if test -n "$DESKTOP_SESSION"
-#    set (gnome-keyring-daemon --start | string split "=")
-#end
+if test -n "$DESKTOP_SESSION"
+   set (gnome-keyring-daemon --start | string split "=")
+end
 
 # Sudo
 abbr -a 's'  'sudo'

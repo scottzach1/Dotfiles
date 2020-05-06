@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #                 _   _                 _     _
 #   ___  ___ ___ | |_| |_ ______ _  ___| |__ / |
 #  / __|/ __/ _ \| __| __|_  / _` |/ __| '_ \| |
@@ -13,6 +13,7 @@
 #                         *** Basic Configuration settings ***                    #
 ##=======================================##
 
+pkill sxhkd
 sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII
@@ -46,17 +47,23 @@ bspc config focused_border_color "#8be9fd"
 bspc rule -a "File Transfer" state=floating
 bspc rule -a class_name="jetbrains-idea" instancename="win0" state=floating
 
-# https://wiki.archlinux.org/index.php/GNOME/Keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
-
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-sh $HOME/.config/polybar/launch.sh
-
 ##==========================================##
 #                              *** Autostart applications ***                      #
 ##=======================================##
+
+set +e
+
+init_keyring() {
+	# https://wiki.archlinux.org/index.php/GNOME/Keyring
+	eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+	export SSH_AUTH_SOCK
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+}
+
+eval 'init_keyring' &
+
+sh $HOME/.config/polybar/launch.sh &
+sh $HOME/unlock.sh > /dev/null &
 
 startup() {
 	# If process matches $1, execute $2
@@ -75,7 +82,6 @@ startup "nextcloud"       "nextcloud"
 startup "blueman-applet"  "blueman-applet"
 startup "mpd-mpris"       "mpd-mpris"
 startup "xautolock"       "xautolock -time 10 -corners +0-0 -locker 'betterlockscreen --lock'"
-sh $HOME/unlock.sh > /dev/null &
 
 nitrogen --restore &
 

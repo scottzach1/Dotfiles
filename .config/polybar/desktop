@@ -157,7 +157,7 @@ type = internal/pulseaudio
 
 ; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
 ; Default: true
-use-ui-max = true
+use-ui-max = false
 
 format-volume = %{A3:pavucontrol &:}%{A2:pactl set-sink-volume @DEFAULT_SINK@ 100%:}<ramp-volume> <label-volume>%{A}%{A}
 
@@ -275,9 +275,9 @@ format-packetloss-background = ${colors.orange}
 type = internal/network
 interface = enp5s0
 
-format-connected =  <ramp-signal> <label-connected>
+format-connected =  <label-connected>
 format-disconnected = <label-disconnected>
-format-packetloss =   <ramp-signal> <label-connected>
+format-packetloss =   <label-connected>
 
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]

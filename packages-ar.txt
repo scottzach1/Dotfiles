@@ -127,5 +127,4 @@ xf86-video-amdgpu
 xorg-server
 xorg-xrdb
 xsel
-zathura-pdf-mupdf
 zip

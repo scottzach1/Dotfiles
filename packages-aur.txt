@@ -3,7 +3,6 @@ betterlockscreen
 brave-nightly-bin
 clion
 dislocker
-eclipse-java
 insync
 intellij-idea-ultimate-edition-jre
 intellij-idea-ultimate-edition

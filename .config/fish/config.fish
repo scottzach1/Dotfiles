@@ -62,6 +62,9 @@ abbr -a 'gcl' 'git clone'
 abbr -a 'gch' 'git checkout'
 abbr -a 'gpu' 'git pull'
 abbr -a 'gco' 'git config'
+abbr -a 'gr'  'git remote'
+abbr -a 'gra' 'git remote add origin'
+abbr -a 'gpuuh' 'git pull origin master --allow-unrelated-histories'
 
 # Editor
 abbr -a 'v' 'nvim'

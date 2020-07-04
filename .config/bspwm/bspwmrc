@@ -14,7 +14,7 @@
 ##=======================================##
 
 pkill sxhkd
-sxhkd &
+sxhkd & > /dev/null
 
 bspc monitor -d I II III IV V VI VII VIII
 
@@ -61,10 +61,10 @@ init_keyring() {
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 }
 
-eval 'init_keyring' &
+eval 'init_keyring' > /dev/null &
 
-sh $HOME/.config/polybar/launch.sh &
-sh $HOME/unlock.sh > /dev/null & # Unlock encrypted drives.
+sh $HOME/.config/polybar/launch.sh > /dev/null &
+# sh $HOME/unlock.sh > /dev/null & # Unlock encrypted drives.
 sh $HOME/init.sh > /dev/null & # Init display with correct resolution.
 
 startup() {
@@ -86,7 +86,7 @@ startup "blueman-applet"  "blueman-applet"
 startup "mpd-mpris"       "mpd-mpris"
 startup "xautolock"       "xautolock -time 10 -corners +0-0 -locker 'betterlockscreen --lock'"
 
-nitrogen --restore &
+nitrogen --restore > /dev/null &
 
 # Java Application Fix
 wmname LG3D &
@@ -96,4 +96,5 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 export BROWSER=""
 xdg-settings set default-web-browser brave-nightly.desktop
 
-mpd_discord_richpresence --fork --no-idle --use-multiple-apps
+mpd_discord_richpresence --fork --no-idle --use-multiple-apps & > /dev/null
+disown

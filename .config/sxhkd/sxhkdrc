@@ -35,8 +35,9 @@ super + alt + p
 	sh $HOME/.config/polybar/launch.sh
 
 # quit/restart picom
-super + alt + t
-	if pgrep picom; pkill picom; else; picom -b; end;
+super + alt + {_,shift + }t
+  eval 'pkill picom && sleep 0.1s || true' && picom -b \
+    --config=$HOME/.config/picom/{picom,picom-video}.conf
 
 # lockscreen
 super + shift + x

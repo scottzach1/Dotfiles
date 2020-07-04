@@ -418,10 +418,12 @@ format-charging-background = ${colors.selection}
 format-charging-foreground = ${colors.foreground}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.selection}
+format-discharging-foreground = ${colors.foreground}
 
-format-full-prefix = ""
+format-full-prefix = " "
+format-full-background = ${colors.selection}
+format-full-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -443,6 +445,9 @@ animation-charging-4 = 
 animation-charging-5 = 
 animation-charging-6 = 
 animation-charging-framerate = 750
+
+format-background = ${colors.selection}
+format-foreground = ${colors.foreground}
 
 [settings]
 screenchange-reload = true

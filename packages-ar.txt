@@ -114,7 +114,6 @@ ttf-dejavu
 ttf-liberation
 tumbler
 unzip
-veracrypt
 virt-manager
 vlc
 vulkan-radeon

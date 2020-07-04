@@ -2,7 +2,6 @@ ant-dracula-gtk-theme
 betterlockscreen
 brave-nightly-bin
 clion
-dislocker
 insync
 intellij-idea-ultimate-edition-jre
 intellij-idea-ultimate-edition

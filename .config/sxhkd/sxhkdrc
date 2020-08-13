@@ -209,6 +209,30 @@ super + shift + s
 	flameshot gui
 
 ##==========================================##
+#                         *** Scratchpad related settings ***                     #
+##=======================================##
+
+super + u
+	bash scratchpad.sh dropdown
+
+##==========================================##
+#                         *** Tabbed binding settings ***                         #
+##=======================================##
+
+# https://www.reddit.com/r/bspwm/comments/etfm3m/for_those_who_like_tabs/
+
+# Add focused window to a tabbed instance in given direction
+
+super + z; {Left,Down,Up,Right}
+	bash ~/.config/sxhkd/tabc.sh (bspc query -N -n {west,south,north,east}) add (bspc query -N -n focused)
+
+# Remove one tab from tabbed
+super + z; r
+    	tabbed=(bspc query -N -n focused) \
+	child=(bash ~/.config/sxhkd/tabc.sh $tabbed list | head -n1) \
+	bash ~/.config/sxhkd/tabc.sh $tabbed remove $child
+
+##==========================================##
 #                      *** Multimedia key binding settings ***                    #
 ##=======================================##
 

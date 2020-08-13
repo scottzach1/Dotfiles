@@ -17,6 +17,10 @@ set -x TERMINAL /usr/bin/kitty
 set -x QT_STYLE_OVERRIDE gtk2
 set -x QT_QPA_PLATFORMTHEM gtk2
 
+# Pintos (temp)
+set -gx PATH /home/zaci/Pintos/pintos/src/utils $PATH
+set -gx PATH /home/zaci/dotfiles/scripts $PATH
+
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
@@ -29,6 +33,9 @@ end
 # Sudo
 abbr -a 's'  'sudo'
 abbr -a 'sv' 'sudo nvim'
+
+# Finding
+abbr -a 'fz'   'find . | fzf'
 
 # Navigation
 abbr -a 'q'    'exit'

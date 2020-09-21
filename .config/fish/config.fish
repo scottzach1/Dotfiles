@@ -12,10 +12,12 @@ set editor "nvim"
 set term "kitty"
 	
 set -x EDITOR /usr/bin/nvim
-set -x BROWSER /usr/bin/chromium
+set -x BROWSER /usr/bin/brave-nightly
 set -x TERMINAL /usr/bin/kitty
 set -x QT_STYLE_OVERRIDE gtk2
 set -x QT_QPA_PLATFORMTHEM gtk2
+
+set -x ANDROID_SDK_ROOT $HOME/Android/Sdk
 
 # Pintos (temp)
 set -gx PATH /home/zaci/Pintos/pintos/src/utils $PATH

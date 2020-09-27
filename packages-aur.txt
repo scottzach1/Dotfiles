@@ -2,9 +2,7 @@ android-studio
 ant-dracula-gtk-theme
 betterlockscreen
 brave-nightly-bin
-cava
 clion
-dislocker
 droidcam
 eclipse-java
 insync
@@ -13,11 +11,10 @@ intellij-idea-ultimate-edition-jre
 libldac
 lightdm-settings
 lightdm-slick-greeter
-markdownlint-cli
+nodejs-markdownlint-cli
 mpd-mpris
 mpd-rich-presence-discord-git
-mullvad-vpn
-nodejs-ionic-cli
+mullvad-vpn-beta
 otf-fira-code
 otf-nerd-fonts-fira-code
 platformio
@@ -30,10 +27,9 @@ siji-git
 speed-test
 tabbed-git
 thunar-shares-plugin
-unimatrix-git
 webstorm
 webstorm-jre
-xtitle
+xtitle-git
 xwinfo-git
 yay
 yed

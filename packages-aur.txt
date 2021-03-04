@@ -5,6 +5,7 @@ brave-nightly-bin
 clion
 droidcam
 eclipse-java
+emote
 insync
 intellij-idea-ultimate-edition
 intellij-idea-ultimate-edition-jre

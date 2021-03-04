@@ -22,6 +22,10 @@ super + Return
 super + @space
 	rofi -show run
 
+# emoji keeb
+super + period
+	emote
+
 # window selector
 super + alt + @space
 	rofi -show window

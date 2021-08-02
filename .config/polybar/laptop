@@ -72,8 +72,8 @@ font-0 = FiraCode Nerd Font:pixelsize=10;0
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm
-modules-center = window-title
+modules-left = bspwm window-title
+;modules-center = window-title
 ;modules-right = xbacklight pulseaudio memory cpu wlan eth wifi battery temperature date powermenu
 modules-right = mpd pulseaudio vpn-connected vpn-connecting vpn-disconnected wlan eth updates-aur memory cpu date backlight battery
 
@@ -210,9 +210,12 @@ format-online-background = ${colors.selection}
 
 [module/window-title]
 type = custom/script
-exec = xtitle $(bspc query -N -n)
+exec = xtitle $(bspc query -N -n) | head -c50
 
 interval = 1
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.selection}
 
 [module/vpn-connected]
 type = custom/script
@@ -275,7 +278,7 @@ format-packetloss-background = ${colors.orange}
 [module/updates-aur]
 type = custom/script
 exec = ~/.config/polybar/scripts/laptop/updates-arch-aur.sh
-interval = 600
+interval = 60
 
 format-foreground = ${colors.background}
 format-background = ${colors.yellow}
@@ -370,7 +373,7 @@ interval = 1.0
 
 ; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = %e/%m  %H:%M
+date =  %e/%m  %H:%M
 
 format-background = ${colors.selection}
 
@@ -418,10 +421,12 @@ format-charging-background = ${colors.selection}
 format-charging-foreground = ${colors.foreground}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.selection}
+format-discharging-foreground = ${colors.foreground}
 
-format-full-prefix = ""
+format-full-prefix = " "
+format-full-background = ${colors.selection}
+format-full-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -443,6 +448,9 @@ animation-charging-4 = 
 animation-charging-5 = 
 animation-charging-6 = 
 animation-charging-framerate = 750
+
+format-background = ${colors.selection}
+format-foreground = ${colors.foreground}
 
 [settings]
 screenchange-reload = true

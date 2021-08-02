@@ -12,18 +12,15 @@ set editor "nvim"
 set term "kitty"
 	
 set -x EDITOR /usr/bin/nvim
-set -x BROWSER /usr/bin/brave-nightly
+set -x BROWSER /usr/bin/brave-browser-nightly
 set -x TERMINAL /usr/bin/kitty
 set -x QT_STYLE_OVERRIDE gtk2
 set -x QT_QPA_PLATFORMTHEM gtk2
 
-set -x ANDROID_SDK_ROOT $HOME/Android/Sdk
+set -x THEFUCK_OVERRIDDEN_ALIASES 'git'
 
 # User Scripts
-set -gx PATH $HOME/dotfiles/scripts $PATH
-
-# Pintos (temp)
-set -gx PATH $HOME/Pintos/pintos/src/utils $PATH
+set -U fish_user_paths ~/Clone/Dotfiles/scripts ~/.local/bin
 
 # No greeting when starting an interactive shell.
 function fish_greeting
@@ -61,6 +58,7 @@ abbr -a 'gs'  'git status'
 abbr -a 'gp'  'git push'
 abbr -a 'ga'  'git add'
 abbr -a 'gl'  'git log'
+abbr -a 'gd'  'git diff'
 abbr -a 'gb'  'git branch'
 abbr -a 'gf'  'git fetch --all'
 abbr -a 'gm'  'git merge'
@@ -82,3 +80,6 @@ abbr -a 'p'   'mpc toggle'
 abbr -a 'n'   'mpc next'
 abbr -a 'pr'  'mpc prev'
 abbr -a 'ms'  'mpc status'
+
+abbr -a 't'   'true'
+abbr -a 'f'   'false'

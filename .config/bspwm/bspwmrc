@@ -74,6 +74,7 @@ kitty --class dropdown &
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 bspc rule -a win0 state=on
+bspc rule -a processing-core-PApplet state=floating
 
 bspc rule -a "File Transfer" state=floating
 bspc rule -a class_name="jetbrains-idea" instancename="win0" state=floating
@@ -115,6 +116,7 @@ startup "nextcloud"       "nextcloud"
 startup "blueman-applet"  "blueman-applet"
 startup "mpd-mpris"       "mpd-mpris"
 startup "xautolock"       "xautolock -time 10 -corners +0-0 -locker 'betterlockscreen --lock'"
+startup "mpd_discord_richpresence" "mpd_discord_richpresence"
 
 nitrogen --restore > /dev/null &
 
@@ -151,9 +153,9 @@ bspc config focused_border_color "#8be9fd"
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 bspc rule -a win0 state=on
-
 bspc rule -a "File Transfer" state=floating
 bspc rule -a class_name="jetbrains-idea" instancename="win0" state=floating
+bspc rule -a -a processing-core-PApplet state=floating
 
 ##==========================================##
 #                              *** Autostart applications ***                      #
@@ -193,6 +195,8 @@ startup "blueman-applet"  "blueman-applet"
 startup "mpd-mpris"       "mpd-mpris"
 startup "xautolock"       "xautolock -time 10 -corners +0-0 -locker 'betterlockscreen --lock'"
 
+FILE=~/.screenlayout/layout.sh
+[[ -f "$FILE" ]] && bash $FILE
 nitrogen --restore > /dev/null &
 
 # Java Application Fix

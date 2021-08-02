@@ -47,6 +47,23 @@ super + alt + {_,shift + }t
 super + shift + x
 	betterlockscreen --lock
 
+# Brave
+super + b
+	brave-browser-nightly
+
+# PyCharm
+super + p
+	pycharm
+
+
+# WebStorm
+super + w
+	webstorm
+
+# Thunar
+super + t
+	thunar
+
 ##==========================================##
 #                         *** Bspwm related hotkeys ***                           #
 ##=======================================##

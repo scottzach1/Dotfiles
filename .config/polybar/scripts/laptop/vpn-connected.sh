@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if (mullvad status || true) | grep -q "Connected"; then
+if mullvad status | grep -q "Connected"; then
     echo ""
 else
     echo ""

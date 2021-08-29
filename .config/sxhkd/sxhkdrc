@@ -47,6 +47,23 @@ super + alt + {_,shift + }t
 super + shift + x
 	betterlockscreen --lock
 
+# Brave
+super + b
+	brave-browser-nightly
+
+# PyCharm
+super + p
+	pycharm
+
+
+# WebStorm
+super + w
+	webstorm
+
+# Thunar
+super + t
+	thunar
+
 ##==========================================##
 #                         *** Bspwm related hotkeys ***                           #
 ##=======================================##
@@ -90,13 +107,20 @@ super + {_,shift + }r
 super + {_,ctrl + }r
 	bspc node @parent --rotate {90,-90}
 
-# Restore entire tree (Anti balance)
-super + {_,shift + }b
-	bspc node @/ --{balance,equalize}
+## Restore entire tree (Anti balance)
+#super + {_,shift + }b
+#	bspc node @/ --{balance,equalize}
+#
+## Restore entire tree (Anti balance)
+#super + {_,shift + }Insert
+#	bspc node @/ --{balance,equalize}
 
-# Restore entire tree (Anti balance)
-super + {_,shift + }Insert
-	bspc node @/ --{balance,equalize}
+super + shift + Insert
+	bspc node -p south; \
+	xterm -e "bspc node @/ --balance; bspc node -c"
+
+super + Insert
+	bspc node @/ --balance
 
 ##==========================================##
 #                         *** Bspwm state & flags settings ***                    #

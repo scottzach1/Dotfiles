@@ -17,11 +17,6 @@ set -x TERMINAL /usr/bin/kitty
 set -x QT_STYLE_OVERRIDE gtk2
 set -x QT_QPA_PLATFORMTHEM gtk2
 
-set -x THEFUCK_OVERRIDDEN_ALIASES 'git'
-
-# User Scripts
-set -U fish_user_paths ~/Clone/Dotfiles/scripts ~/.local/bin
-
 # No greeting when starting an interactive shell.
 function fish_greeting
 end

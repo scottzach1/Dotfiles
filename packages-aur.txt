@@ -1,8 +1,8 @@
 ant-dracula-gtk-theme
-betterlockscreen
+betterlockscreen-git
 brave-nightly-bin
-droidcam
 emote
+flameshot-git
 insync
 libldac
 lightdm-settings
@@ -15,10 +15,13 @@ otf-nerd-fonts-fira-code
 polybar-git
 qmk
 qt5-styleplugins
+rider
+rubymine
 siji-git
+spotify
 tabbed-git
 thunar-shares-plugin
 xtitle-git
 xwinfo-git
 yay
-yed
+zoom

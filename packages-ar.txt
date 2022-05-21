@@ -1,7 +1,5 @@
 alsa-utils
 amd-ucode
-android-tools
-android-udev
 ansible
 ansible-lint
 arandr
@@ -32,6 +30,7 @@ feh
 ffmpegthumbnailer
 file
 findutils
+firefox
 fish
 fzf
 gawk
@@ -55,7 +54,6 @@ gvfs-mtp
 gvfs-smb
 gzip
 htop
-jdk-openjdk
 kitty
 libldac
 libtool
@@ -65,7 +63,7 @@ lightdm-slick-greeter
 linux
 linux-firmware
 linux-headers
-lostfiles
+lostfinles
 lsof
 lvm2
 lxappearance
@@ -102,8 +100,6 @@ polkit-gnome
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
-python-cpplint
-python-pip
 qt5ct
 rofi
 samba
@@ -128,6 +124,7 @@ ttf-liberation
 tumbler
 unrar
 unzip
+vagrant
 virt-manager
 vlc
 wget

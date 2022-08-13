@@ -10,7 +10,9 @@
 
 set editor "nvim"
 set term "kitty"
-	
+
+fish_add_path ~/.local/bin
+
 set -x EDITOR /usr/bin/nvim
 set -x BROWSER /usr/bin/brave-browser-nightly
 set -x TERMINAL /usr/bin/kitty

@@ -230,8 +230,19 @@ main() {
     install_base_system
     configure_system
 
-    log "INFO" "Initial setup is complete, please reboot to continue"
-    log "INFO" "> umount -R /mnt; swapoff -a; reboot"
+    log "INFO" "Initial setup is complete"
+    read -p "Would you like to reboot? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      log "INFO" "You may run the following you are done"
+      log "INFO" "> umount -R /mnt; swapoff -a; reboot"
+      log "ERROR" "Operation cancelled by user"
+      exit 0
+    fi
+      log "INFO" "rebooting..."
+      umount -R /mnt
+      swapoff -a
+      reboot
 }
 
 # Run the installation

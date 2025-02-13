@@ -8,19 +8,19 @@ In the future I will try to automate with a script and list all required depende
 ## Screenshot laptop w/ bspwm + polybar
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/laptop-bspwm.png">
+<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/screenshots/laptop-bspwm.png">
 </p>
 
 ## Screenshot laptop w/ i3wm + bumblebee status
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/laptop-i3wm.png">
+<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/screenshots/laptop-i3wm.png">
 </p>
 
 ## Screenshot desktop w/ bspwm + polybar
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/desktop-bspwm.png">
+<img src="https://raw.githubusercontent.com/scottzach1/dotfiles/master/screenshots/desktop-bspwm.png">
 </p>
 
 ## Author

@@ -89,14 +89,14 @@ copy_configs() {
 	find configs/home -type f -printf '%P\0' |
 		while IFS= read -r -d '' item; do
       mkdir -p "$HOME/$(dirname "$item")"
-			cp --interactive "$item" "$HOME/$item"
+			cp_confirm "configs/home/$item" "$HOME/$item"
 		done
 
 	log "INFO" "Copy config files to root filesystem"
 	find configs/root -type f -printf '%P\0' |
 		while IFS= read -r -d '' item; do
       sudo mkdir -p "/$(dirname "$item")"
-			sudo cp --interactive "$item" "/$item"
+			sudo cp "configs/root/$item" "/$item"
 		done
 }
 

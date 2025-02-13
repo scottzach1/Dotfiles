@@ -205,7 +205,8 @@ configure_system() {
     partition_luks="${partitions[1]}"
     sed_string="s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"cryptdevice=${partition_luks}:luks:allow-discards resume=/dev/vg0/swap\"|"
     chroot_cmd "sed -i '$sed_string' /etc/default/grub"
-
+    chroot_cmd "sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub"
+    chroot_cmd "echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub"
     chroot_cmd "grub-install --bootloader-id=Arch --efi-directory=/boot"
     chroot_cmd "grub-mkconfig -o /boot/grub/grub.cfg"
 

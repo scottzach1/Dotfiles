@@ -221,6 +221,9 @@ configure_system() {
 
     # Configure sudo
     chroot_cmd "echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel"
+
+    # Enable internet
+    chroot_cmd "systemctl enable NetworkManager"
 }
 
 # Main installation process

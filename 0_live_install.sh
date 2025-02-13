@@ -2,7 +2,7 @@
 
 # Configuration variables
 TARGET_DISK="XXX"  # /dev/nvme0n1
-SWAP_SIZE="16G"
+SWAP_SIZE="32G"
 HOSTNAME="desktop"
 USERNAME="zaci"
 TIMEZONE="Pacific/Auckland"
@@ -203,9 +203,9 @@ configure_system() {
     log "INFO" "Configure grub"
     mapfile -t partitions < <(lsblk -ln -o NAME,TYPE | awk -v dev="$(basename "$TARGET_DISK")" '$2=="part" && $1 ~ dev {print "/dev/" $1}' | sort -V)
     partition_luks="${partitions[1]}"
-    sed_string="s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"cryptdevice=${partition_luks}:luks:allow-discards resume=/dev/vg0/swap\"|"
-    chroot_cmd "sed -i '$sed_string' /etc/default/grub"
+    chroot_cmd "sed -i 's|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"cryptdevice=${partition_luks}:luks:allow-discards resume=/dev/vg0/swap\"|' /etc/default/grub"
     chroot_cmd "sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub"
+    chroot_cmd "sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub"
     chroot_cmd "echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub"
     chroot_cmd "grub-install --bootloader-id=Arch --efi-directory=/boot"
     chroot_cmd "grub-mkconfig -o /boot/grub/grub.cfg"
@@ -236,7 +236,7 @@ main() {
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
       log "INFO" "You may run the following you are done"
       log "INFO" "> umount -R /mnt; swapoff -a; reboot"
-      log "ERROR" "Operation cancelled by user"
+      log "INFO" "exiting gracefully..."
       exit 0
     fi
       log "INFO" "rebooting..."

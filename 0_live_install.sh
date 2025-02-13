@@ -215,7 +215,7 @@ configure_system() {
     chroot_cmd "passwd"
 
     # Create user
-    chroot_cmd "useradd -m -G wheel -s /bin/shell $USERNAME"
+    chroot_cmd "useradd -m -G wheel -s /usr/bin/fish $USERNAME"
     log "INFO" "Set password for $USERNAME:"
     chroot_cmd "passwd $USERNAME"
 

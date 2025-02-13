@@ -1,0 +1,141 @@
+/* Dracula colors https://gist.github.com/EgZvor */
+* {
+    opaque: 	rgba ( 40, 42, 54, 0 % );
+    gray: 	rgba ( 68, 71, 90, 100 % );
+    light-gray: 	rgba ( 98, 114, 164, 100 % );
+
+    white: 	rgba ( 248, 248, 242, 100 % );
+    background: 	rgba ( 40, 42, 54, 100 % );
+    current-line: 	rgba ( 68, 71, 90, 100 % );
+    selection: 	rgba ( 68, 71, 90, 100 % );
+    foreground: 	rgba ( 248, 248, 242, 100 % );
+    cyan: 	rgba ( 139, 233, 253, 100 % );
+    green: 	rgba ( 80, 250, 123, 100 % );
+    orange: 	rgba ( 255, 184, 108, 100 % );
+    pink: 	rgba ( 255, 121, 198, 100 % );
+    purple: 	rgba ( 189, 147, 249, 100 % );
+    red: 	rgba ( 255, 85, 85, 100 % );
+    yellow: 	rgba ( 241, 250, 140, 100 % );
+}
+* {
+    normal-foreground:              @purple;
+    normal-background:              @gray;
+
+    active-foreground:              @purple;
+
+    selected-normal-foreground:     @pink;
+    selected-normal-background:     @gray;
+
+    alternate-normal-background:    @normal-background;
+    alternate-normal-foreground:    @normal-foreground;
+
+    urgent-foreground:              @red;
+    urgent-background:              @normal-background;
+
+    alternate-urgent-background:    @urgent-background;
+    alternate-urgent-foreground:    @urgent-foreground;
+
+    selected-active-foreground:     @selected-normal-foreground;
+    selected-active-background:     @normal-background;
+
+    selected-urgent-background:     @normal-background;
+    selected-urgent-foreground:     @selected-normal-foreground;
+
+    alternate-active-foreground:    @normal-foreground;
+    alternate-active-background:    @normal-background;
+
+    border-color:                   @opaque;
+    separatorcolor:                 @opaque;
+
+    spacing: 2;
+    background-color: @normal-background;
+}
+window {
+    background-color: transparent;
+    border:  0;
+    padding: 0;
+    margin:  0;
+}
+mainbox {
+    background-color: inherit;
+    border:  0;
+    padding: 0;
+}
+element {
+    border:  0;
+    padding: 1px ;
+}
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    border:       0;
+}
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+    padding:    10px ;
+    margin: 5px ;
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+listview {
+    padding: 10px;
+    margin: 5px;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-background;
+}
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+    enabled: true;
+}
+textbox-prompt-colon {
+     text-color: inherit;
+     expand: false;
+     margin: 0 0em 0em 0em;
+     str: ": ";
+}

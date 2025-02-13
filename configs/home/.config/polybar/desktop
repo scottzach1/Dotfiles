@@ -1,0 +1,483 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+;
+;; colors
+;
+
+[colors]
+background = #282a36
+selection = #44475a
+foreground = #f8f8f2
+comment = #6272a4
+cyan = #8be9fd
+green = #50fa7b
+orange = #ffb86c
+pink = #ff79c6
+purple = #bd93f9
+red = #ff5555
+yellow = #f1fa8c
+
+urgent = ${colors.red}
+
+background-alt = #44475a
+foreground-alt = #88868a
+primary = #ff79c6
+secondary = #f1fa8c
+alert = #ff5555
+
+;
+;; polybar
+;
+
+[bar/bspwm-bar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-y = 5
+;radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size-top = 5
+border-color = ${colors.red}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = FiraCode Nerd Font:pixelsize=10;0
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+
+modules-left = bspwm
+modules-center = window-title
+modules-right = mpd pulseaudio vpn-connected vpn-connecting vpn-disconnected wlan eth updates-aur filesystem memory cpu cpu-temp date
+
+tray-position = right
+tray-padding = 0
+tray-background = ${colors.selection}
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;
+;; modules left
+;
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %icon%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-padding = 2
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+; ws-icon-[0-9]+ = <label>;<icon>
+; Note that the <label> needs to correspond with the bspwm workspace name
+; Neither <label> nor <icon> can contain a semicolon (;)
+
+; Web
+ws-icon-0 = "I;"
+; Terminal
+ws-icon-1 = "II;"
+; Code
+ws-icon-2 = "III;"
+; Git
+ws-icon-3 = "IV;"
+; Media
+ws-icon-4 = "V;"
+; Download
+ws-icon-5 = "VI;"
+; Chat
+ws-icon-6 = "VII;"
+; Music
+ws-icon-7 = "VIII;"
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(focused|urgent|occupied|empty)>
+;   <label-mode> - gets replaced with <label-(monocle|tiled|fullscreen|floating|locked|sticky|private)>
+; Default: <label-state>
+format = <label-state> <label-mode>
+
+;
+;; modules center
+;
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+;sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = false
+
+format-volume = %{A3:pavucontrol &:}%{A2:pactl set-sink-volume @DEFAULT_SINK@ 100%:}<ramp-volume> <label-volume>%{A}%{A}
+
+label-muted = %{A3:pavucontrol &:}ﱝ %percentage%%%{A}
+label-muted-foreground = ${colors.foreground}
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+
+format-volume-background = ${colors.yellow}
+format-volume-foreground = ${colors.background}
+label-volume-foreground = ${colors.background}
+
+format-muted-background = ${colors.red}
+format-muted-foreground = ${colors.background}
+
+[module/mpd]
+type = internal/mpd
+
+;format-online = help me
+format-playing = %{A3:kitty ncmpcpp &:}%{A2:kitty ncmpcpp --screen visualizer &:}<icon-prev> <icon-stop>%{A1:mpc toggle:} <toggle> <label-song>%{A} <icon-next>%{A}%{A}
+format-paused = ${self.format-playing}
+format-stopped = %{A3:kitty ncmpcpp &:}<icon-play>%{A}
+
+icon-prev = 玲
+icon-stop = 栗
+icon-play = 契
+icon-pause = 
+icon-next = 怜
+icon-repeat = 凌
+icon-random = 咽
+
+toggle-on-foreground = ${colors.foreground}
+toggle-off-foreground = #656066
+
+;label-song = %{A1:mpc toggle:}%album-artist% - %title% %{A}
+label-song = %album-artist% - %title%
+
+label-song-maxlen = 50
+label-song-ellipsis = true
+
+format-online-background = ${colors.selection}
+
+;
+;; modules right
+;
+
+[module/window-title]
+type = custom/script
+exec = xtitle $(bspc query -N -n)
+
+interval = 1
+
+[module/vpn-connected]
+type = custom/script
+exec = ~/.config/polybar/scripts/desktop/vpn-connected.sh
+
+format-background = ${colors.green}
+format-foreground = ${colors.background}
+
+; tail = true
+
+click-left = "mullvad disconnect &"
+click-right = "mullvad-vpn &"
+
+[module/vpn-connecting]
+type = custom/script
+exec = ~/.config/polybar/scripts/desktop/vpn-connecting.sh
+
+format-background = ${colors.yellow}
+format-foreground = ${colors.background}
+
+click-left = "mullvad disconnect &"
+click-right = "mullvad-vpn &"
+
+[module/vpn-disconnected]
+type = custom/script
+exec = ~/.config/polybar/scripts/desktop/vpn-disconnected.sh
+
+format-background = ${colors.red}
+format-foreground = ${colors.foreground}
+
+click-left = "mullvad connect &"
+click-right = "mullvad-vpn &"
+
+[module/wlan]
+type = internal/network
+interface = wlp6s0
+
+format-connected =   <label-connected>
+format-disconnected = <label-disconnected>
+
+format-packetloss = <label-packetloss> <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+label-connected = %essid% up %local_ip% | %downspeed%  %upspeed%
+label-packetloss =  %essid% up %local_ip%  | %downspeed%  %upspeed%
+
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.comment}
+format-packetloss-foreground = ${colors.background}
+format-packetloss-background = ${colors.orange}
+
+[module/eth]
+type = internal/network
+interface = enp5s0
+
+format-connected =  <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss =   <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+label-connected = %ifname% up %local_ip%  | %downspeed%  %upspeed%
+
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.comment}
+format-packetloss-foreground = ${colors.background}
+format-packetloss-background = ${colors.orange}
+
+
+[module/updates-aur]
+type = custom/script
+exec = ~/.config/polybar/scripts/desktop/updates-arch-aur.sh
+interval = 600
+
+format-foreground = ${colors.background}
+format-background = ${colors.yellow}
+
+click-left = kitty
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+; Available tags:
+;   <label-mounted> (default)
+;   <bar-free>
+;   <bar-used>
+;   <ramp-capacity>
+format-mounted = <label-mounted>
+
+; Available tags:
+;   <label-unmounted> (default)
+format-unmounted = <label-unmounted>
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+label-mounted =   %used% of %total%
+
+; Available tokens:
+;   %mountpoint%
+; Default: %mountpoint% is not mounted
+label-unmounted = %mountpoint%: not mounted
+label-unmounted-foreground = #55
+
+format-mounted-foreground = ${colors.foreground}
+format-mounted-background = ${colors.comment}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-foreground = ${colors.background}
+format-background = ${colors.green}
+label = %{A1:kitty htop &:}%gb_used%/%gb_total%%{A}
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.5
+
+format = %{A1:kitty htop &:}<label> <ramp-coreload>%{A}
+
+label =  %percentage%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+format-background = ${colors.purple}
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date =  %a, %b %e %Y    %H:%M
+
+format-background = ${colors.selection}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+format-margin = 0
+format-padding = 1
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[module/cpu-temp]
+type = internal/temperature
+
+format-background = ${colors.selection}
+; format-background = ${colors.cyan}
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp2_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 20
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 80
+
+; Whether or not to show units next to the temperature tokens (°C, °F)
+; Default: true
+units = false
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+format = <ramp> <label>
+
+; Available tags:
+;   <label-warn> (default)
+;   <ramp>
+format-warn = <ramp> <label-warn>
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label = %temperature-c%°
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label-warn = %temperature-c%°
+label-warn-foreground = ${colors.foreground}
+format-warn-background = ${colors.red}
+
+; Requires the <ramp> tag
+; The icon selection will range from `base-temperature` to `warn-temperature`,
+; temperatures at and above `warn-temperature` will use the last icon
+; and temperatures at and below `base-temperature` will use `ramp-0`. 
+; All other icons are distributed evenly between the two temperatures.
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+; ramp-foreground = #55

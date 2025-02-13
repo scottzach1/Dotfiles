@@ -154,7 +154,8 @@ prepare_disk() {
 install_base_system() {
     # Install base packages
     log "INFO" "Install base packages"
-    pacstrap /mnt base base-devel linux linux-firmware grub efibootmgr lvm2 fish git neovim man-db man-pages texinfo os-prober
+    # shellcheck disable=SC2046
+    pacstrap /mnt $(cat packages-pacstrap.lst)
 
     # Generate fstab
     log "INFO" "Generate and update fstab"

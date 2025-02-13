@@ -1,4 +1,0 @@
-nvidia
-veracrypt
-android-sdk
-

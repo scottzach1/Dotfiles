@@ -1,6 +1,13 @@
 #!/bin/bash
-
-# Configuration variables
+#                 _   _                 _     _
+#   ___  ___ ___ | |_| |_ ______ _  ___| |__ / |
+#  / __|/ __/ _ \| __| __|_  / _` |/ __| '_ \| |
+#  \__ \ (_| (_) | |_| |_ / / (_| | (__| | | | |
+#  |___/\___\___/ \__|\__/___\__,_|\___|_| |_|_|
+#
+#       Zac Scott (github.com/scottzach1)
+#
+# 1_post_install.sh
 
 # Color codes for output
 RED='\033[0;31m'
@@ -52,17 +59,6 @@ log() {
 	esac
 }
 
-# User validation
-confirmation_prompt() {
-	local question="$1"
-	read -p "$question (y/N) " -n 1 -r
-	echo
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-		log "ERROR" "Operation cancelled by user"
-		exit 1
-	fi
-}
-
 sanity_checks() {
 	# Check if script is run as root
   if [ "$EUID" -eq 0 ]; then
@@ -81,7 +77,6 @@ sanity_checks() {
 setup_things() {
 	# Enable time synchronization
 	timedatectl set-ntp true
-
 }
 
 copy_configs() {
@@ -89,7 +84,7 @@ copy_configs() {
 	find configs/home -type f -printf '%P\0' |
 		while IFS= read -r -d '' item; do
       mkdir -p "$HOME/$(dirname "$item")"
-			cp_confirm "configs/home/$item" "$HOME/$item"
+			cp "configs/home/$item" "$HOME/$item"
 		done
 
 	log "INFO" "Copy config files to root filesystem"
@@ -101,15 +96,19 @@ copy_configs() {
 }
 
 install_paru_git() {
-  log "INFO" "Installing paru from git"
-  # https://github.com/Morganamilo/paru
-  local target_dir="$CLONE_DIR/Aur/paru"
-  mkdir -p "$(dirname "$target_dir")"
-  sudo pacman -S --needed base-devel
-  git clone https://aur.archlinux.org/paru.git "$target_dir"
-  pushd "$target_dir" > /dev/null
-  makepkg -si
-  popd > /dev/null
+  if command -v paru >/dev/null 2>&1; then
+    log "INFO" "Paru is already installed (skipping install)"
+  else
+    log "INFO" "Installing paru from git"
+    # https://github.com/Morganamilo/paru
+    local target_dir="$CLONE_DIR/Aur/paru"
+    mkdir -p "$(dirname "$target_dir")"
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/paru.git "$target_dir"
+    pushd "$target_dir" > /dev/null
+    makepkg -si
+    popd > /dev/null
+  fi
 }
 
 install_packages_pacman() {
@@ -124,12 +123,44 @@ install_packages_paru() {
   paru -S --needed $(cat packages-paru.lst)
 }
 
+setup_nvim() {
+  if ! command -v nvim >/dev/null 2>&1; then
+    log "INFO" "Neovim is not installed (skipping setup)"
+  else
+    log "INFO" "Setting up neovim plugins"
+
+    log "INFO" "- Installing junegunn/vim-plug"
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+    # Run PlugInstall headless
+    nvim --headless +PlugInstall +qall
+  fi
+}
+
+setup_fish() {
+  if ! command -v fish >/dev/null 2>&1; then
+    log "INFO" "Fish shell is not installed (skipping setup)"
+  else
+    log "INFO" "Setting up fish plugins"
+    log "INFO" "- Install oh-my-fish/oh-my-pish"
+    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
+    fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
+
+    log "INFO" "- Installing scottzach1/dracula-theme-omf"
+    fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
+    fish -c "omf theme dracula-theme-omf"
+  fi
+}
+
 # Main installation process
 main() {
 	sanity_checks
 	copy_configs
 	install_paru_git
 	install_packages_pacman
+	setup_nvim
+	setup_fish
 
 	log "INFO" "Post install setup is complete, please reboot to continue"
 }

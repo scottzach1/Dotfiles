@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 #                 _   _                 _     _
 #   ___  ___ ___ | |_| |_ ______ _  ___| |__ / |
 #  / __|/ __/ _ \| __| __|_  / _` |/ __| '_ \| |
@@ -14,7 +14,7 @@
 ##=======================================##
 
 pkill sxhkd
-sxhkd & > /dev/null
+sxhkd & &> /dev/null
 
 bspc monitor -d I II III IV V VI VII VIII
 
@@ -69,16 +69,16 @@ init_keyring() {
 
 # eval 'init_keyring' > /dev/null &
 
-sh $HOME/.config/polybar/launch.sh > /dev/null &
-# sh $HOME/unlock.sh > /dev/null & # Unlock encrypted drives.
-# sh $HOME/.screenlayout/default.sh > /dev/null & # Init display with correct resolution.
-# sh $HOME/.onedrive.sh &
+sh "$HOME/.config/polybar/launch.sh" > /dev/null &
+# sh "$HOME/unlock.sh" > /dev/null & # Unlock encrypted drives.
+# sh "$HOME/.screenlayout/default.sh" > /dev/null & # Init display with correct resolution.
+# sh "$HOME/.onedrive.sh" &
 
 startup() {
 	# If process matches $1, execute $2
-	if ! pgrep -x $1 > /dev/null
+	if ! pgrep -x "$1" > /dev/null
 	then
-		eval $2 &
+		eval "$2" &
 		disown
 	fi
 }

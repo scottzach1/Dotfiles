@@ -3,7 +3,6 @@
 ant-dracula-gtk-theme
 betterlockscreen-git
 bruno-bin
-burpsuite
 clion
 datagrip
 datagrip-jre
@@ -15,7 +14,7 @@ goland-jre
 lightdm-settings
 ntfsfixboot
 nvm
-polybar-git
+polybar
 powershell-bin
 pycharm-professional
 qt5-styleplugins

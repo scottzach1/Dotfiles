@@ -95,6 +95,16 @@ copy_configs() {
 		done
 }
 
+copy_scripts() {
+  log "INFO" "Copy scripts to ~/.local/bin"
+  mkdir -p "$HOME/.local/bin"
+  find scripts/ -type f -printf '%P\0' |
+    while IFS= read -r -d '' item; do
+      cp "scripts/$item" "$HOME/.local/bin/$item"
+    done
+
+}
+
 install_paru_git() {
   if command -v paru >/dev/null 2>&1; then
     log "INFO" "Paru is already installed (skipping install)"
@@ -123,6 +133,12 @@ install_packages_paru() {
   paru -S --needed $(cat packages-paru.lst)
 }
 
+install_python() {
+  log "INFO" "Setting up Python and dependencies"
+  log "INFO" "- installing astral-sh/uv"
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
 setup_nvim() {
   if ! command -v nvim >/dev/null 2>&1; then
     log "INFO" "Neovim is not installed (skipping setup)"
@@ -143,27 +159,52 @@ setup_fish() {
     log "INFO" "Fish shell is not installed (skipping setup)"
   else
     log "INFO" "Setting up fish plugins"
-    log "INFO" "- Install oh-my-fish/oh-my-pish"
-    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
-    fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
-
+    if fish -c "omf --version" >/dev/null 2>&1; then
+      log "INFO" "- Install oh-my-fish/oh-my-fish"
+      curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
+      fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
+    else
+      log "INFO" "- oh-my-fish already installed (skipping)"
+    fi
     log "INFO" "- Installing scottzach1/dracula-theme-omf"
     fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
     fish -c "omf theme dracula-theme-omf"
   fi
 }
 
+enable_services() {
+  log "INFO" "Enabling servies via systemctl"
+  services=("lightdm" "NetworkManager" "bluetooth" "polkit")
+
+  for svc in "${services[@]}"; do
+    log "INFO" "- enabling $svc.service"
+  done
+}
+
 # Main installation process
 main() {
 	sanity_checks
 	copy_configs
+	copy_scripts
 	install_paru_git
 	install_packages_pacman
+	install_python
 	setup_nvim
 	setup_fish
+	enable_services
 
-	log "INFO" "Post install setup is complete, please reboot to continue"
+  log "INFO" "Post install setup is complete"
+  read -p "Would you like to reboot? (y/N) " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    log "INFO" "You may run the following you are done"
+    log "INFO" "> reboot"
+    log "INFO" "exiting gracefully..."
+    exit 0
+  fi
+  log "INFO" "rebooting..."
+  reboot
 }
 
-# Run the installation
+# Run the setup
 main

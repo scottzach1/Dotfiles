@@ -251,10 +251,10 @@ main() {
       log "INFO" "exiting gracefully..."
       exit 0
     fi
-      log "INFO" "rebooting..."
-      umount -R /mnt
-      swapoff -a
-      reboot
+    log "INFO" "rebooting..."
+    umount -R /mnt
+    swapoff -a
+    reboot
 }
 
 # Run the installation

@@ -75,7 +75,7 @@ font-2 = siji:pixelsize=10;1
 modules-left = bspwm window-title
 ;modules-center = window-title
 ;modules-right = xbacklight pulseaudio memory cpu wlan eth wifi battery temperature date powermenu
-modules-right = mpd pulseaudio vpn-connected vpn-connecting vpn-disconnected wlan eth updates-aur memory cpu date backlight battery
+modules-right = mpd pulseaudio mullvad-connected mullvad-connecting mullvad-disconnected wlan eth updates-aur memory cpu date backlight battery
 
 tray-position = right
 tray-padding = 0
@@ -217,9 +217,9 @@ interval = 1
 format-foreground = ${colors.foreground}
 format-background = ${colors.selection}
 
-[module/vpn-connected]
+[module/mullvad-connected]
 type = custom/script
-exec = ~/.config/polybar/scripts/laptop/vpn-connected.sh
+exec = ~/.config/polybar/scripts/laptop/mullvad-connected.sh
 
 format-background = ${colors.green}
 format-foreground = ${colors.background}
@@ -229,9 +229,9 @@ format-foreground = ${colors.background}
 click-left = "mullvad disconnect &"
 click-right = "mullvad-vpn &"
 
-[module/vpn-connecting]
+[module/mullvad-connecting]
 type = custom/script
-exec = ~/.config/polybar/scripts/laptop/vpn-connecting.sh
+exec = ~/.config/polybar/scripts/laptop/mullvad-connecting.sh
 
 format-background = ${colors.yellow}
 format-foreground = ${colors.background}
@@ -239,9 +239,9 @@ format-foreground = ${colors.background}
 click-left = "mullvad disconnect &"
 click-right = "mullvad-vpn &"
 
-[module/vpn-disconnected]
+[module/mullvad-disconnected]
 type = custom/script
-exec = ~/.config/polybar/scripts/laptop/vpn-disconnected.sh
+exec = ~/.config/polybar/scripts/laptop/mullvad-disconnected.sh
 
 format-background = ${colors.red}
 format-foreground = ${colors.foreground}

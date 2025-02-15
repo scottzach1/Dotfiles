@@ -74,7 +74,7 @@ font-0 = FiraCode Nerd Font:pixelsize=10;0
 
 modules-left = bspwm
 modules-center = window-title
-modules-right = mpd pulseaudio vpn-connected vpn-connecting vpn-disconnected wlan eth updates-aur filesystem memory cpu cpu-temp date
+modules-right = mpd pulseaudio mullvad-connected mullvad-connecting mullvad-disconnected wlan eth updates-aur filesystem memory cpu cpu-temp date
 
 tray-position = right
 tray-padding = 0
@@ -213,9 +213,9 @@ exec = xtitle $(bspc query -N -n)
 
 interval = 1
 
-[module/vpn-connected]
+[module/mullvad-connected]
 type = custom/script
-exec = ~/.config/polybar/scripts/desktop/vpn-connected.sh
+exec = ~/.config/polybar/scripts/desktop/mullvad-connected.sh
 
 format-background = ${colors.green}
 format-foreground = ${colors.background}
@@ -225,9 +225,9 @@ format-foreground = ${colors.background}
 click-left = "mullvad disconnect &"
 click-right = "mullvad-vpn &"
 
-[module/vpn-connecting]
+[module/mullvad-connecting]
 type = custom/script
-exec = ~/.config/polybar/scripts/desktop/vpn-connecting.sh
+exec = ~/.config/polybar/scripts/desktop/mullvad-connecting.sh
 
 format-background = ${colors.yellow}
 format-foreground = ${colors.background}
@@ -235,9 +235,9 @@ format-foreground = ${colors.background}
 click-left = "mullvad disconnect &"
 click-right = "mullvad-vpn &"
 
-[module/vpn-disconnected]
+[module/mullvad-disconnected]
 type = custom/script
-exec = ~/.config/polybar/scripts/desktop/vpn-disconnected.sh
+exec = ~/.config/polybar/scripts/desktop/mullvad-disconnected.sh
 
 format-background = ${colors.red}
 format-foreground = ${colors.foreground}

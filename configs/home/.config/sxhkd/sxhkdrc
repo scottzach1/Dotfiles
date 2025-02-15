@@ -35,7 +35,7 @@ super + alt + s
 
 # relaunch polybar
 super + alt + p
-	sh $HOME/.config/polybar/launch.sh
+	sh "$HOME/.config/polybar/launch.sh"
 
 # quit/restart picom
 super + alt + {_,shift + }t
@@ -49,7 +49,6 @@ super + shift + x
 # Browser
 super + b
 	firefox
-	#microsoft-edge-stable
 
 # PyCharm
 super + p
@@ -158,7 +157,7 @@ super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
 super + shift + {Left,Down,Up,Right}
-        dir={west,south,north,east}; \
+  dir={west,south,north,east}; \
 	bspc node -s "$dir" --follow || bspc node -m "$dir" --follow;
 
 super + shift + alt + {Left,Down,Up,Right
@@ -260,7 +259,7 @@ super + shift + s
 ##=======================================##
 
 super + u
-	bash scratchpad.sh dropdown
+	scratchpad dropdown
 
 ##==========================================##
 #                         *** Tabbed binding settings ***                         #
@@ -271,13 +270,13 @@ super + u
 # Add focused window to a tabbed instance in given direction
 
 super + z; {Left,Down,Up,Right}
-	bash tabc.sh (bspc query -N -n {west,south,north,east}) add (bspc query -N -n focused)
+	bash tabc (bspc query -N -n {west,south,north,east}) add (bspc query -N -n focused)
 
 # Remove one tab from tabbed
 super + z; r
     	set tabbed (bspc query -N -n focused) \
-	set child (bash ~/.config/sxhkd/tabc.sh $tabbed list | head -n1) \
-	bash tabc.sh $tabbed remove $child
+	set child (tabc $tabbed list | head -n1) \
+	bash tabc $tabbed remove $child
 
 ##==========================================##
 #                      *** Multimedia key binding settings ***                    #

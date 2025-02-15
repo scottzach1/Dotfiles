@@ -117,7 +117,7 @@ copy_configs() {
 copy_scripts() {
   log "INFO" "Copy scripts to ~/.local/bin"
   mkdir -p "$HOME/.local/bin"
-  find scripts/ -type f -printf '%P\0' |
+  find scripts -type f -printf '%P\0' |
     while IFS= read -r -d '' item; do
       cp "scripts/$item" "$HOME/.local/bin/$item"
     done

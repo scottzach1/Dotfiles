@@ -75,7 +75,7 @@ font-2 = siji:pixelsize=10;1
 modules-left = bspwm window-title
 ;modules-center = window-title
 ;modules-right = xbacklight pulseaudio memory cpu wlan eth wifi battery temperature date powermenu
-modules-right = mpd pulseaudio mullvad-connected mullvad-connecting mullvad-disconnected wlan eth updates-aur memory cpu date backlight battery
+modules-right = mpd pulseaudio wlan eth updates-aur memory cpu date backlight battery
 
 tray-position = right
 tray-padding = 0

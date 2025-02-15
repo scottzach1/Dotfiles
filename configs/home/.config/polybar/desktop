@@ -74,7 +74,7 @@ font-0 = FiraCode Nerd Font:pixelsize=10;0
 
 modules-left = bspwm
 modules-center = window-title
-modules-right = mpd pulseaudio mullvad-connected mullvad-connecting mullvad-disconnected wlan eth updates-aur filesystem memory cpu cpu-temp date
+modules-right = mpd pulseaudio wlan eth updates-aur filesystem memory cpu cpu-temp date
 
 tray-position = right
 tray-padding = 0

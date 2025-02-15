@@ -15,7 +15,7 @@ SWAP_SIZE="32G"
 HOSTNAME="desktop"
 USERNAME="zaci"
 TIMEZONE="Pacific/Auckland"
-LOCALE="en_NZ.utf8"
+LOCALE="en_NZ.UTF-8 UTF-8"
 KEYMAP="us"
 
 # Color codes for output

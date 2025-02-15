@@ -47,6 +47,15 @@ In the future I will try to automate with a script and list all required depende
    bash 0_live_install.sh
    ```
 
+### Post Install
+
+1. Reboot into Arch Linux
+2. Run post install script
+
+   ```shell
+   bash 1_post_install.sh
+   ```
+
 ## Screenshot laptop w/ bspwm + polybar
 
 <p align="center">

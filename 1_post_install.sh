@@ -207,6 +207,15 @@ enable_services() {
   done
 }
 
+setup_misc() {
+  # Setup wallpaper
+  log "INFO" "Setting up miscellaneous things"
+  log "INFO" "- set falseWallpaper.png background"
+  nitrogen --set-auto /usr/share/backgrounds/falseWallpaper.png
+  log "INFO" "- set falseWallpaper.png lockscreen"
+  betterlockscreen --update /usr/share/backgrounds/falseWallpaper.png
+}
+
 # Main installation process
 main() {
 	sanity_checks
@@ -217,6 +226,7 @@ main() {
 	install_python
 	setup_nvim
 	setup_fish
+	setup_misc
 	enable_services
 
   log "INFO" "Post install setup is complete"

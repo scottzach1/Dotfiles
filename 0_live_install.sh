@@ -24,9 +24,28 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Exit on any error and show commands being executed
-set -e  # Exit immediately if a command exits with a non-zero status
-set -x  # Print commands and their arguments as they are executed
+# Parse command line arguments
+VERBOSE=0
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -v|--verbose)
+      VERBOSE=1
+      shift
+      ;;
+    *)
+      echo "Unknown option: $1"
+      exit 1
+      ;;
+  esac
+done
+
+# Exit on any error
+set -e
+
+# Enable command echoing only if verbose mode is on
+if [ "$VERBOSE" -eq 1 ]; then
+  set -x
+fi
 
 # Set up logging
 exec 1> >(tee "$(basename --suffix .sh "$0")_$(date +%Y%m%d_%H%M%S).log")

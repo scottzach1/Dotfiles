@@ -154,8 +154,13 @@ install_packages_paru() {
 
 install_python() {
   log "INFO" "Setting up Python and dependencies"
-  log "INFO" "- installing astral-sh/uv"
-  curl -LsSf https://astral.sh/uv/install.sh | sh
+
+  if command -v >/dev/null 2>&1; then
+    log "INFO" "- uv is already installed (skipping)"
+  else
+    log "INFO" "- installing astral-sh/uv"
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+  fi
 }
 
 setup_nvim() {
@@ -178,7 +183,7 @@ setup_fish() {
     log "INFO" "Fish shell is not installed (skipping setup)"
   else
     log "INFO" "Setting up fish plugins"
-    if fish -c "omf --version" >/dev/null 2>&1; then
+    if ! fish -c "omf --version" >/dev/null 2>&1; then
       log "INFO" "- Install oh-my-fish/oh-my-fish"
       curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
       fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
@@ -186,7 +191,9 @@ setup_fish() {
       log "INFO" "- oh-my-fish already installed (skipping)"
     fi
     log "INFO" "- Installing scottzach1/dracula-theme-omf"
-    fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
+    if ! fish -c "omf theme" | grep dracula-theme-omf >/dev/null 2>&1; then
+      fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
+    fi
     fish -c "omf theme dracula-theme-omf"
   fi
 }

@@ -15,7 +15,7 @@ SWAP_SIZE="32G"
 HOSTNAME="desktop"
 USERNAME="zaci"
 TIMEZONE="Pacific/Auckland"
-LOCALE="en_NZ.UTF-8 UTF-8"
+LOCALES=("en_NZ.UTF-8 UTF-8" "en_US.UTF-8 UTF-8")
 KEYMAP="us"
 
 # Color codes for output
@@ -210,9 +210,18 @@ configure_system() {
     chroot_cmd "hwclock --systohc"
 
     # Set locale
-    log "INFO" "Set locale to $LOCALE"
+    log "INFO" "Uncomment locales"
+    for locale in "${LOCALES[@]}"; do
+      log "INFO" "- $locale"
+      chroot_cmd "sed -i \"s/^#\s*${locale}/${locale}/\" /etc/locale.gen"
+    done
+    log "INFO" "Generate locales"
     chroot_cmd locale-gen
-    chroot_cmd "echo \"LANG=$LOCALE\" > /etc/locale.conf"
+
+    locale=${LOCALES[0]}
+    locale="LANG=${locale%% *}"
+    log "INFO" "Set locale to $locale"
+    chroot_cmd "localectl set-locale \"$locale\""
 
     # Set keyboard layout
     log "INFO" "Set keyboard layout to $KEYMAP"

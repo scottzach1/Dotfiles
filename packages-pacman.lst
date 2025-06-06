@@ -134,7 +134,6 @@ wget
 whois
 wireshark-qt
 wmname
-xautolock
 xclip
 xdotool
 xorg-server

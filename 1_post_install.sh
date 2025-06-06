@@ -223,6 +223,7 @@ main() {
 	copy_scripts
 	install_paru_git
 	install_packages_pacman
+	install_packages_paru
 	install_python
 	setup_nvim
 	setup_fish

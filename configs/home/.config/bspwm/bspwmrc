@@ -94,7 +94,7 @@ startup "blueman-applet"  "blueman-applet"
 startup "xautolock"       "xautolock -time 10 -corners +0-0 -locker 'betterlockscreen --lock'"
 #startup "mpd_discord_richpresence" "mpd_discord_richpresence"
 
-nitrogen --restore > /dev/null &
+nitrogen --head=0 --set-scaled /usr/share/backgrounds/falseWallpaper.png > /dev/null &
 
 # Java Application Fix
 wmname LG3D &

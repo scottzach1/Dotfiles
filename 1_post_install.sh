@@ -210,8 +210,6 @@ enable_services() {
 setup_misc() {
   # Setup wallpaper
   log "INFO" "Setting up miscellaneous things"
-  log "INFO" "- set falseWallpaper.png background"
-  nitrogen --set-auto /usr/share/backgrounds/falseWallpaper.png
   log "INFO" "- set falseWallpaper.png lockscreen"
   betterlockscreen --update /usr/share/backgrounds/falseWallpaper.png
 }

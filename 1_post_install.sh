@@ -143,7 +143,7 @@ install_paru_git() {
 install_packages_pacman() {
   log "INFO" "Installing AR packages via pacman"
   # shellcheck disable=SC2046
-  sudo pacman -S --needed $(cat packages-pacman.lst)
+  paru -S --needed $(cat packages-pacman.lst)
 }
 
 install_packages_paru() {

@@ -199,12 +199,18 @@ setup_fish() {
 }
 
 enable_services() {
-  log "INFO" "Enabling servies via systemctl"
-  services=("lightdm" "NetworkManager" "bluetooth" "polkit")
+  log "INFO" "Enabling services via systemctl"
+  services=("lightdm" "NetworkManager" "bluetooth" "polkit" "earlyoom" "fstrim.timer")
 
   for svc in "${services[@]}"; do
-    log "INFO" "- enabling $svc.service"
+    log "INFO" "- enabling $svc"
+    sudo systemctl enable --now "$svc"
   done
+}
+
+apply_luks_perf() {
+  log "INFO" "Applying dm-crypt workqueue bypass for LUKS"
+  sudo cryptsetup refresh --perf-no_read_workqueue --perf-no_write_workqueue --allow-discards --persistent luks
 }
 
 setup_misc() {
@@ -227,6 +233,7 @@ main() {
 	setup_fish
 	setup_misc
 	enable_services
+	apply_luks_perf
 
   log "INFO" "Post install setup is complete"
   read -p "Would you like to reboot? (y/N) " -n 1 -r

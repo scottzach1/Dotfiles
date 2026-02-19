@@ -21,6 +21,7 @@ docker
 docker-buildx
 docker-compose
 dunst
+earlyoom
 efibootmgr
 exfat-utils
 fd
@@ -145,3 +146,4 @@ xterm
 yarn
 yq
 zip
+zram-generator

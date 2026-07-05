@@ -13,7 +13,6 @@ dnsmasq
 docker
 docker-buildx
 docker-compose
-dunst
 earlyoom
 efibootmgr
 egl-wayland
@@ -53,6 +52,7 @@ linux-headers
 lsof
 lvm2
 lxappearance
+mako
 man-db
 man-pages
 mesa-utils

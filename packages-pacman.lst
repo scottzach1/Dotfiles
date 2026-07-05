@@ -76,7 +76,6 @@ pipewire-pulse
 playerctl
 polkit-gnome
 pre-commit
-python-black
 python-pipx
 python-tox
 qmk
@@ -85,6 +84,7 @@ qt5-wayland
 qt5ct
 qt6-wayland
 rclone
+ruff
 samba
 shfmt
 signal-desktop

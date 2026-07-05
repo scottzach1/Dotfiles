@@ -1,0 +1,100 @@
+// waybar — replaces polybar. Three-section layout so it doesn't huddle on the
+// left of a 5120px 32:9 panel. Native modules replace most polybar internals;
+// only mullvad + updates need the ported custom scripts.
+{
+    "layer": "top",
+    "position": "top",
+    "height": 27,
+    "spacing": 2,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "custom/updates",
+        "custom/mullvad",
+        "network",
+        "pulseaudio",
+        "disk",
+        "memory",
+        "cpu",
+        "temperature",
+        "tray",
+        "clock"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "I", "2": "II", "3": "III", "4": "IV",
+            "5": "V", "6": "VI", "7": "VII", "8": "VIII",
+            "9": "IX", "10": "X"
+        }
+    },
+
+    "hyprland/window": {
+        "max-length": 80,
+        "separate-outputs": true
+    },
+
+    "custom/updates": {
+        "exec": "~/.config/waybar/scripts/updates-arch-aur.sh",
+        "interval": 600,
+        "on-click": "kitty -e paru -Syu"
+    },
+
+    "custom/mullvad": {
+        "exec": "~/.config/waybar/scripts/mullvad.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "mullvad connect",
+        "on-click-right": "mullvad disconnect"
+    },
+
+    "network": {
+        "format-wifi": " {essid} {ipaddr}",
+        "format-ethernet": " {ipaddr}",
+        "format-disconnected": "睊 offline",
+        "tooltip-format": "{ifname}: {ipaddr} | ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "ﱝ {volume}%",
+        "format-icons": { "default": ["奄", "奔", "墳"] },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+
+    "disk": {
+        "path": "/",
+        "format": " {used}/{total}"
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": " {used:0.1f}/{total:0.1f}G",
+        "on-click": "kitty -e htop"
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%",
+        "on-click": "kitty -e htop"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°",
+        "format-critical": " {temperatureC}°"
+    },
+
+    "tray": {
+        "spacing": 8
+    },
+
+    "clock": {
+        "format": " {:%a, %b %e %Y    %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    }
+}

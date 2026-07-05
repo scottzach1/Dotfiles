@@ -1,0 +1,57 @@
+/* waybar — Dracula, ported from the polybar colour scheme */
+@define-color background #282a36;
+@define-color selection  #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment    #6272a4;
+@define-color cyan       #8be9fd;
+@define-color green      #50fa7b;
+@define-color orange     #ffb86c;
+@define-color pink       #ff79c6;
+@define-color purple     #bd93f9;
+@define-color red        #ff5555;
+@define-color yellow     #f1fa8c;
+
+* {
+    font-family: "FiraCode Nerd Font";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @background;
+    color: @foreground;
+    border-top: 3px solid @red;   /* was polybar border-size-top / red */
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: @comment;
+    background: transparent;
+}
+#workspaces button.active {
+    color: @foreground;
+    background: @selection;
+    border-bottom: 2px solid @pink;   /* was label-focused-underline primary */
+}
+#workspaces button.urgent {
+    color: @background;
+    background: @red;
+}
+
+#window { color: @foreground; }
+
+/* right-side modules mirror the polybar per-module colouring */
+#custom-updates { background: @yellow; color: @background; padding: 0 8px; }
+#custom-mullvad.connected    { background: @green;  color: @background; padding: 0 8px; }
+#custom-mullvad.connecting   { background: @yellow; color: @background; padding: 0 8px; }
+#custom-mullvad.disconnected { background: @red;    color: @foreground; padding: 0 8px; }
+#network     { background: @comment; color: @foreground; padding: 0 8px; }
+#pulseaudio  { background: @yellow;  color: @background; padding: 0 8px; }
+#pulseaudio.muted { background: @red; color: @background; }
+#disk        { background: @comment; color: @foreground; padding: 0 8px; }
+#memory      { background: @green;   color: @background; padding: 0 8px; }
+#cpu         { background: @purple;  color: @background; padding: 0 8px; }
+#temperature { background: @selection; color: @foreground; padding: 0 8px; }
+#temperature.critical { background: @red; color: @foreground; }
+#clock       { background: @selection; color: @foreground; padding: 0 10px; }
+#tray        { padding: 0 8px; }

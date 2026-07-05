@@ -13,6 +13,7 @@ set editor "nvim"
 set term "kitty"
 
 fish_add_path ~/.local/bin
+fish_add_path ~/.dotnet/tools   # dotnet global tools (csharpier, roslyn-language-server)
 
 set -x EDITOR /usr/bin/nvim
 set -x BROWSER /usr/bin/firefox

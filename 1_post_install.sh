@@ -214,10 +214,20 @@ apply_luks_perf() {
 }
 
 setup_misc() {
-  # Setup wallpaper
   log "INFO" "Setting up miscellaneous things"
-  log "INFO" "- set falseWallpaper.png lockscreen"
-  betterlockscreen --update /usr/share/backgrounds/falseWallpaper.png
+  # Wallpaper + lockscreen are declarative now (hypr/hyprpaper.conf, hypr/hyprlock.conf).
+
+  # hyprscroller (scrolling-column layout) is a Hyprland plugin, not a package.
+  # Building may need a running Hyprland session; `hyprpm reload` also runs from
+  # hyprland.conf on login, so failures here are non-fatal.
+  if command -v hyprpm >/dev/null 2>&1; then
+    log "INFO" "- installing hyprscroller plugin via hyprpm"
+    hyprpm update || true
+    hyprpm add https://github.com/dawsers/hyprscroller || true
+    hyprpm enable hyprscroller || true
+  else
+    log "WARN" "- hyprpm not found; install hyprscroller after first Hyprland launch"
+  fi
 }
 
 # Main installation process

@@ -23,6 +23,7 @@ ffmpegthumbnailer
 firefox
 fish
 fprintd
+fuzzel
 fzf
 git
 github-cli
@@ -83,7 +84,6 @@ qt5-wayland
 qt5ct
 qt6-wayland
 rclone
-rofi
 samba
 shfmt
 signal-desktop

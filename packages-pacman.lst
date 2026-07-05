@@ -25,6 +25,7 @@ fish
 fprintd
 fuzzel
 fzf
+ghostty
 git
 github-cli
 gnome-keyring
@@ -92,7 +93,6 @@ sof-firmware
 sshfs
 swappy
 tailscale
-terminator
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin

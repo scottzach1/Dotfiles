@@ -1,15 +1,20 @@
-/* waybar — Dracula, ported from the polybar colour scheme */
-@define-color background #282a36;
-@define-color selection  #44475a;
-@define-color foreground #f8f8f2;
-@define-color comment    #6272a4;
-@define-color cyan       #8be9fd;
-@define-color green      #50fa7b;
-@define-color orange     #ffb86c;
-@define-color pink       #ff79c6;
-@define-color purple     #bd93f9;
-@define-color red        #ff5555;
-@define-color yellow     #f1fa8c;
+/* waybar — Catppuccin Mocha */
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+@define-color text     #cdd6f4;
+@define-color subtext  #a6adc8;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color overlay  #6c7086;
+@define-color blue     #89b4fa;
+@define-color green    #a6e3a1;
+@define-color peach    #fab387;
+@define-color pink     #f5c2e7;
+@define-color mauve    #cba6f7;
+@define-color red      #f38ba8;
+@define-color yellow   #f9e2af;
+@define-color teal     #94e2d5;
 
 * {
     font-family: "FiraCode Nerd Font";
@@ -18,40 +23,39 @@
 }
 
 window#waybar {
-    background: @background;
-    color: @foreground;
-    border-top: 3px solid @red;   /* was polybar border-size-top / red */
+    background: @base;
+    color: @text;
+    border-top: 3px solid @mauve;
 }
 
 #workspaces button {
     padding: 0 8px;
-    color: @comment;
+    color: @overlay;
     background: transparent;
 }
 #workspaces button.active {
-    color: @foreground;
-    background: @selection;
-    border-bottom: 2px solid @pink;   /* was label-focused-underline primary */
+    color: @text;
+    background: @surface0;
+    border-bottom: 2px solid @mauve;
 }
 #workspaces button.urgent {
-    color: @background;
+    color: @base;
     background: @red;
 }
 
-#window { color: @foreground; }
+#window { color: @text; }
 
-/* right-side modules mirror the polybar per-module colouring */
-#custom-updates { background: @yellow; color: @background; padding: 0 8px; }
-#custom-mullvad.connected    { background: @green;  color: @background; padding: 0 8px; }
-#custom-mullvad.connecting   { background: @yellow; color: @background; padding: 0 8px; }
-#custom-mullvad.disconnected { background: @red;    color: @foreground; padding: 0 8px; }
-#network     { background: @comment; color: @foreground; padding: 0 8px; }
-#pulseaudio  { background: @yellow;  color: @background; padding: 0 8px; }
-#pulseaudio.muted { background: @red; color: @background; }
-#disk        { background: @comment; color: @foreground; padding: 0 8px; }
-#memory      { background: @green;   color: @background; padding: 0 8px; }
-#cpu         { background: @purple;  color: @background; padding: 0 8px; }
-#temperature { background: @selection; color: @foreground; padding: 0 8px; }
-#temperature.critical { background: @red; color: @foreground; }
-#clock       { background: @selection; color: @foreground; padding: 0 10px; }
+#custom-updates { background: @yellow; color: @base; padding: 0 8px; }
+#custom-mullvad.connected    { background: @green;  color: @base; padding: 0 8px; }
+#custom-mullvad.connecting   { background: @yellow; color: @base; padding: 0 8px; }
+#custom-mullvad.disconnected { background: @red;    color: @base; padding: 0 8px; }
+#network     { background: @surface1; color: @text; padding: 0 8px; }
+#pulseaudio  { background: @peach;    color: @base; padding: 0 8px; }
+#pulseaudio.muted { background: @red; color: @base; }
+#disk        { background: @surface1; color: @text; padding: 0 8px; }
+#memory      { background: @green;    color: @base; padding: 0 8px; }
+#cpu         { background: @mauve;    color: @base; padding: 0 8px; }
+#temperature { background: @surface0; color: @text; padding: 0 8px; }
+#temperature.critical { background: @red; color: @base; }
+#clock       { background: @surface0; color: @text; padding: 0 10px; }
 #tray        { padding: 0 8px; }

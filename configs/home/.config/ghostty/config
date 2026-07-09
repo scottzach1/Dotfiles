@@ -1,5 +1,6 @@
 # ghostty — default terminal (kitty kept for the dropdown scratchpad).
-theme = catppuccin-mocha
+# Follows the desktop light/dark preference (which darkman flips) automatically.
+theme = light:catppuccin-latte,dark:catppuccin-mocha
 font-family = FiraCode Nerd Font
 font-size = 11
 background-opacity = 0.95

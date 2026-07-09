@@ -220,6 +220,22 @@ apply_luks_perf() {
   sudo cryptsetup refresh --perf-no_read_workqueue --perf-no_write_workqueue --allow-discards --persistent luks
 }
 
+setup_gtk_theme() {
+  # Colloid GTK theme with the Catppuccin tweak (Light + Dark), built from source
+  # so we get the catppuccin palette without an unmaintained AUR package. Produces
+  # ~/.themes/Colloid-{Light,Dark}-Catppuccin (verify names with `ls ~/.themes`;
+  # if they differ, update the gtk-theme references in the darkman mode scripts).
+  log "INFO" "Installing Colloid GTK theme (Catppuccin, light+dark)"
+  local dir="$CLONE_DIR/Themes/Colloid-gtk-theme"
+  if [ ! -d "$dir" ]; then
+    mkdir -p "$(dirname "$dir")"
+    git clone --depth 1 https://github.com/vinceliuice/Colloid-gtk-theme.git "$dir"
+  fi
+  pushd "$dir" > /dev/null
+  ./install.sh --tweaks catppuccin -c light -c dark || log "WARN" "- Colloid install returned non-zero"
+  popd > /dev/null
+}
+
 setup_misc() {
   log "INFO" "Setting up miscellaneous things"
   # Wallpaper + lockscreen are declarative now (hypr/hyprpaper.conf, hypr/hyprlock.conf).
@@ -249,6 +265,7 @@ main() {
 	install_python
 	setup_nvim
 	setup_fish
+	setup_gtk_theme
 	setup_misc
 	enable_services
 	apply_luks_perf

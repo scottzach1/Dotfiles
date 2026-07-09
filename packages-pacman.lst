@@ -9,6 +9,7 @@ bluez-utils
 brightnessctl
 cliphist
 csvlens
+darkman
 dnsmasq
 docker
 docker-buildx

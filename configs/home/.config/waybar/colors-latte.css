@@ -1,0 +1,17 @@
+/* Catppuccin Latte (light) — swapped in by darkman -> colors.css */
+@define-color base     #eff1f5;
+@define-color mantle   #e6e9ef;
+@define-color crust    #dce0e8;
+@define-color text     #4c4f69;
+@define-color subtext  #6c6f85;
+@define-color surface0 #ccd0da;
+@define-color surface1 #bcc0cc;
+@define-color overlay  #9ca0b0;
+@define-color blue     #1e66f5;
+@define-color green    #40a02b;
+@define-color peach    #fe640b;
+@define-color pink     #ea76cb;
+@define-color mauve    #8839ef;
+@define-color red      #d20f39;
+@define-color yellow   #df8e1d;
+@define-color teal     #179299;

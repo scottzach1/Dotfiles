@@ -1,0 +1,11 @@
+# darkman — day/night switching. Runs ~/.local/share/{light,dark}-mode.d/ scripts
+# at sunrise/sunset and flips the org.freedesktop.appearance portal (so Firefox,
+# VS Code, Chromium and GTK4/libadwaita apps follow automatically).
+#
+# Desktop doesn't move, so use fixed coordinates instead of geoclue.
+# (Auckland, NZ — matches the installer TIMEZONE. Edit for your location.)
+lat: -36.85
+lng: 174.76
+usegeoclue: false
+dbusserver: true
+portal: true

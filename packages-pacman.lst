@@ -53,7 +53,6 @@ linux-firmware
 linux-headers
 lsof
 lvm2
-lxappearance
 mako
 man-db
 man-pages
@@ -65,6 +64,7 @@ networkmanager
 ntfs-3g
 nvidia-open-dkms
 nvidia-utils
+nwg-look
 obsidian
 os-prober
 papirus-icon-theme
@@ -83,6 +83,7 @@ qpdf
 qt5-wayland
 qt5ct
 qt6-wayland
+qt6ct
 rclone
 ruff
 samba

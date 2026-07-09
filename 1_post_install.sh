@@ -152,6 +152,22 @@ install_packages_paru() {
   paru -S --needed $(cat packages-paru.lst)
 }
 
+setup_nvidia() {
+  # Wayland on the RTX 3080 needs early KMS: the nvidia modules in the initramfs
+  # (which also pulls in /etc/modprobe.d/nvidia.conf -> modeset=1, copied by
+  # copy_configs). Runs after package install so nvidia-open-dkms + linux-headers
+  # are present for the dkms build.
+  log "INFO" "Configuring NVIDIA early KMS"
+  if ! grep -q '^MODULES=(.*nvidia' /etc/mkinitcpio.conf; then
+    log "INFO" "- adding nvidia modules to initramfs MODULES"
+    sudo sed -i 's/^MODULES=.*/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+  else
+    log "INFO" "- nvidia modules already present in MODULES (skipping)"
+  fi
+  log "INFO" "- regenerating initramfs"
+  sudo mkinitcpio -P
+}
+
 install_python() {
   log "INFO" "Setting up Python and dependencies"
 
@@ -238,6 +254,7 @@ main() {
 	install_paru_git
 	install_packages_pacman
 	install_packages_paru
+	setup_nvidia
 	install_python
 	setup_nvim
 	setup_fish

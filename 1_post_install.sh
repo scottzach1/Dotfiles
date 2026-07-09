@@ -239,18 +239,10 @@ setup_gtk_theme() {
 setup_misc() {
   log "INFO" "Setting up miscellaneous things"
   # Wallpaper + lockscreen are declarative now (hypr/hyprpaper.conf, hypr/hyprlock.conf).
-
-  # hyprscroller (scrolling-column layout) is a Hyprland plugin, not a package.
-  # Building may need a running Hyprland session; `hyprpm reload` also runs from
-  # hyprland.conf on login, so failures here are non-fatal.
-  if command -v hyprpm >/dev/null 2>&1; then
-    log "INFO" "- installing hyprscroller plugin via hyprpm"
-    hyprpm update || true
-    hyprpm add https://github.com/dawsers/hyprscroller || true
-    hyprpm enable hyprscroller || true
-  else
-    log "WARN" "- hyprpm not found; install hyprscroller after first Hyprland launch"
-  fi
+  # Layout is the built-in `master` (no plugin) — hyprscroller was dropped after it
+  # failed to build against Hyprland 0.55.4 (upstream API rename). Revisit if the
+  # plugin catches up; nothing to install here now.
+  :
 }
 
 # Main installation process

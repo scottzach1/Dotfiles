@@ -10,24 +10,27 @@
 # Fish Config
 
 set editor "nvim"
-set term "kitty"
+set term "ghostty"
 
 fish_add_path ~/.local/bin
 
 set -x EDITOR /usr/bin/nvim
 set -x BROWSER /usr/bin/firefox
-set -x TERMINAL /usr/bin/kitty
-set -x QT_STYLE_OVERRIDE gtk2
-set -x QT_QPA_PLATFORMTHEM gtk2
-set -x SXHKD_SHELL /bin/bash
+set -x TERMINAL /usr/bin/ghostty
+# Qt apps follow the qt5ct/qt6ct theme under Wayland (was the X11 gtk2 style plugin).
+set -x QT_QPA_PLATFORMTHEME qt5ct
 
 # No greeting when starting an interactive shell.
 function fish_greeting
 end
 
-# Init Gnome keyring daemon.
-if test -n "$DESKTOP_SESSION"
-   set (gnome-keyring-daemon --start | string split "=")
+# NOTE: gnome-keyring is started once per graphical session from hypr/hyprland.conf
+# (exec-once), not here — starting it from every shell was redundant.
+
+# starship prompt (replaces the oh-my-fish dracula theme).
+if status is-interactive
+   and type -q starship
+    starship init fish | source
 end
 
 # Sudo

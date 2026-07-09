@@ -91,6 +91,7 @@ signal-desktop
 slurp
 sof-firmware
 sshfs
+starship
 swappy
 tailscale
 thunar

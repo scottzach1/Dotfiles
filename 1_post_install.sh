@@ -195,22 +195,13 @@ setup_nvim() {
 }
 
 setup_fish() {
-  if ! command -v fish >/dev/null 2>&1; then
-    log "INFO" "Fish shell is not installed (skipping setup)"
+  # Prompt is starship now (installed via packages-pacman.lst) and is wired up in
+  # config.fish; fish's autosuggestions/syntax-highlighting are built in, so
+  # oh-my-fish is no longer needed. Nothing to bootstrap here.
+  if command -v starship >/dev/null 2>&1; then
+    log "INFO" "starship present; prompt initialised from config.fish"
   else
-    log "INFO" "Setting up fish plugins"
-    if ! fish -c "omf --version" >/dev/null 2>&1; then
-      log "INFO" "- Install oh-my-fish/oh-my-fish"
-      curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
-      fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
-    else
-      log "INFO" "- oh-my-fish already installed (skipping)"
-    fi
-    log "INFO" "- Installing scottzach1/dracula-theme-omf"
-    if ! fish -c "omf theme" | grep dracula-theme-omf >/dev/null 2>&1; then
-      fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
-    fi
-    fish -c "omf theme dracula-theme-omf"
+    log "WARN" "starship not found; prompt will fall back to fish default"
   fi
 }
 

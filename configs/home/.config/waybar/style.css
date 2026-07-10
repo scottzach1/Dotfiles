@@ -1,0 +1,68 @@
+/* waybar — Catppuccin. Palette lives in colors.css, swapped day/night by darkman. */
+@import url("colors.css");
+
+* {
+    font-family: "FiraCode Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @base;
+    color: @text;
+    border-bottom: 2px solid @mauve;
+}
+
+/* --- workspaces (left) --- */
+#workspaces { margin-left: 4px; }
+#workspaces button {
+    padding: 0 8px;
+    margin: 4px 1px;
+    border-radius: 6px;
+    color: @overlay;
+    background: transparent;
+}
+#workspaces button.active {
+    color: @base;
+    background: @mauve;
+}
+#workspaces button.urgent {
+    color: @base;
+    background: @red;
+}
+
+#submap { color: @peach; margin: 0 6px; }
+#window { color: @subtext; }
+
+/* --- right-side modules: rounded "pill" with gaps so they don't run together --- */
+#custom-updates, #custom-mullvad, #network, #pulseaudio,
+#disk, #memory, #custom-cpucores, #cpu, #temperature, #clock {
+    margin: 4px 3px;
+    padding: 0 12px;
+    border-radius: 8px;
+}
+
+/* per-core load sparkline — sits just before the CPU% pill, same mauve */
+#custom-cpucores { background: @mauve; color: @base; padding: 0 8px; }
+#tray { margin: 4px 3px; padding: 0 8px; }
+
+/* per-module colour (Catppuccin) */
+#custom-updates { background: @yellow;   color: @base; }
+#custom-mullvad.connected    { background: @green;  color: @base; }
+#custom-mullvad.connecting   { background: @yellow; color: @base; }
+#custom-mullvad.disconnected { background: @surface1; color: @subtext; }
+#network      { background: @surface1; color: @text; }
+#pulseaudio   { background: @peach;    color: @base; }
+#pulseaudio.muted { background: @surface1; color: @subtext; }
+#disk         { background: @surface1; color: @text; }
+#memory       { background: @teal;     color: @base; }
+#clock        { background: @surface0; color: @text; }
+
+/* CPU: colour follows load thresholds (states in config.jsonc) */
+#cpu            { background: @mauve;  color: @base; }
+#cpu.warning    { background: @yellow; color: @base; }
+#cpu.critical   { background: @red;    color: @base; }
+
+/* Temperature: normal subtle, critical red */
+#temperature          { background: @surface0; color: @text; }
+#temperature.critical { background: @red;       color: @base; }

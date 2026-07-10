@@ -1,0 +1,13 @@
+[git_status]
+use_git_executable = true
+conflicted = '=${count}'
+stashed = ''
+deleted = '✘${count}'
+renamed = '»${count}'
+modified = '!${count}'
+staged = '+${count}'
+untracked = '?${count}'
+typechanged = '~${count}'
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'

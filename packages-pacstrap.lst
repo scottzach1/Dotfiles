@@ -1,7 +1,5 @@
 base
 base-devel
-dhcpcd
-dialog
 efibootmgr
 fish
 git

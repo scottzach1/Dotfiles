@@ -152,6 +152,22 @@ install_packages_paru() {
   paru -S --needed $(cat packages-paru.lst)
 }
 
+setup_nvidia() {
+  # Wayland on the RTX 3080 needs early KMS: the nvidia modules in the initramfs
+  # (which also pulls in /etc/modprobe.d/nvidia.conf -> modeset=1, copied by
+  # copy_configs). Runs after package install so nvidia-open-dkms + linux-headers
+  # are present for the dkms build.
+  log "INFO" "Configuring NVIDIA early KMS"
+  if ! grep -q '^MODULES=(.*nvidia' /etc/mkinitcpio.conf; then
+    log "INFO" "- adding nvidia modules to initramfs MODULES"
+    sudo sed -i 's/^MODULES=.*/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+  else
+    log "INFO" "- nvidia modules already present in MODULES (skipping)"
+  fi
+  log "INFO" "- regenerating initramfs"
+  sudo mkinitcpio -P
+}
+
 install_python() {
   log "INFO" "Setting up Python and dependencies"
 
@@ -179,22 +195,13 @@ setup_nvim() {
 }
 
 setup_fish() {
-  if ! command -v fish >/dev/null 2>&1; then
-    log "INFO" "Fish shell is not installed (skipping setup)"
+  # Prompt is starship now (installed via packages-pacman.lst) and is wired up in
+  # config.fish; fish's autosuggestions/syntax-highlighting are built in, so
+  # oh-my-fish is no longer needed. Nothing to bootstrap here.
+  if command -v starship >/dev/null 2>&1; then
+    log "INFO" "starship present; prompt initialised from config.fish"
   else
-    log "INFO" "Setting up fish plugins"
-    if ! fish -c "omf --version" >/dev/null 2>&1; then
-      log "INFO" "- Install oh-my-fish/oh-my-fish"
-      curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf-install
-      fish omf-install --path="$HOME/.local/share/omf" --config="$HOME/.config/omf/config.omf" --noninteractive --yes
-    else
-      log "INFO" "- oh-my-fish already installed (skipping)"
-    fi
-    log "INFO" "- Installing scottzach1/dracula-theme-omf"
-    if ! fish -c "omf theme" | grep dracula-theme-omf >/dev/null 2>&1; then
-      fish -c "omf install https://github.com/scottzach1/dracula-theme-omf.git"
-    fi
-    fish -c "omf theme dracula-theme-omf"
+    log "WARN" "starship not found; prompt will fall back to fish default"
   fi
 }
 
@@ -213,11 +220,29 @@ apply_luks_perf() {
   sudo cryptsetup refresh --perf-no_read_workqueue --perf-no_write_workqueue --allow-discards --persistent luks
 }
 
+setup_gtk_theme() {
+  # Colloid GTK theme with the Catppuccin tweak (Light + Dark), built from source
+  # so we get the catppuccin palette without an unmaintained AUR package. Produces
+  # ~/.themes/Colloid-{Light,Dark}-Catppuccin (verify names with `ls ~/.themes`;
+  # if they differ, update the gtk-theme references in the darkman mode scripts).
+  log "INFO" "Installing Colloid GTK theme (Catppuccin, light+dark)"
+  local dir="$CLONE_DIR/Themes/Colloid-gtk-theme"
+  if [ ! -d "$dir" ]; then
+    mkdir -p "$(dirname "$dir")"
+    git clone --depth 1 https://github.com/vinceliuice/Colloid-gtk-theme.git "$dir"
+  fi
+  pushd "$dir" > /dev/null
+  ./install.sh --tweaks catppuccin -c light -c dark || log "WARN" "- Colloid install returned non-zero"
+  popd > /dev/null
+}
+
 setup_misc() {
-  # Setup wallpaper
   log "INFO" "Setting up miscellaneous things"
-  log "INFO" "- set falseWallpaper.png lockscreen"
-  betterlockscreen --update /usr/share/backgrounds/falseWallpaper.png
+  # Wallpaper + lockscreen are declarative now (hypr/hyprpaper.conf, hypr/hyprlock.conf).
+  # Layout is the built-in `master` (no plugin) — hyprscroller was dropped after it
+  # failed to build against Hyprland 0.55.4 (upstream API rename). Revisit if the
+  # plugin catches up; nothing to install here now.
+  :
 }
 
 # Main installation process
@@ -228,9 +253,11 @@ main() {
 	install_paru_git
 	install_packages_pacman
 	install_packages_paru
+	setup_nvidia
 	install_python
 	setup_nvim
 	setup_fish
+	setup_gtk_theme
 	setup_misc
 	enable_services
 	apply_luks_perf

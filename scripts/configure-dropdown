@@ -1,0 +1,17 @@
+#!/bin/sh
+# Float + top-anchor the scratchpad after its kitty window appears, so it reads
+# as a Quake-style drop-down from the top (paired with the
+# `specialWorkspace ... slidevert` animation in hyprland.conf).
+for _ in $(seq 1 50); do
+	if hyprctl clients -j | jq -e 'any(.[]; .class == "dropdown")' >/dev/null 2>&1; then
+		hyprctl dispatch setfloating class:dropdown >/dev/null
+		# wide, short panel flush to the top edge: 90% wide x 45% tall, centred, y=0
+		hyprctl dispatch resizewindowpixel 'exact 90% 45%,class:dropdown' >/dev/null
+		hyprctl dispatch movewindowpixel 'exact 5% 0%,class:dropdown' >/dev/null
+		exit 0
+	fi
+	sleep 0.1
+done
+
+echo "Dropdown scratchpad did not appear" >&2
+exit 1

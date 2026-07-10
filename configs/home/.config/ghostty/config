@@ -1,0 +1,12 @@
+# ghostty — default terminal (kitty kept for the dropdown scratchpad).
+# Follows the desktop light/dark preference (which darkman flips via the
+# freedesktop appearance portal) automatically. Names must match
+# `ghostty +list-themes` exactly (title case + spaces).
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+font-family = FiraCode Nerd Font
+font-size = 11
+background-opacity = 0.95
+window-padding-x = 8
+window-padding-y = 8
+cursor-style = block
+confirm-close-surface = false

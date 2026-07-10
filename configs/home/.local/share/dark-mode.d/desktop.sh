@@ -2,8 +2,11 @@
 # darkman dark-mode hook — flip the whole desktop to Catppuccin Mocha.
 cfg="$HOME/.config"
 
-# Hyprland border palette
-cp "$cfg/hypr/theme-mocha.conf" "$cfg/hypr/theme.conf" 2>/dev/null && hyprctl reload >/dev/null 2>&1
+# Hyprland reads the active darkman mode when its Lua config reloads.
+hyprctl reload >/dev/null 2>&1
+
+# Wallpaper
+hyprctl hyprpaper wallpaper ",$HOME/.local/share/backgrounds/macos-big-sur-dark.jpg,cover" >/dev/null 2>&1
 
 # waybar
 cp "$cfg/waybar/colors-mocha.css" "$cfg/waybar/colors.css" 2>/dev/null && killall -SIGUSR2 waybar 2>/dev/null

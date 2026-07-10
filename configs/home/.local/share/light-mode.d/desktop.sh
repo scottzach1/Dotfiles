@@ -2,8 +2,11 @@
 # darkman light-mode hook — flip the whole desktop to Catppuccin Latte.
 cfg="$HOME/.config"
 
-# Hyprland border palette
-cp "$cfg/hypr/theme-latte.conf" "$cfg/hypr/theme.conf" 2>/dev/null && hyprctl reload >/dev/null 2>&1
+# Hyprland reads the active darkman mode when its Lua config reloads.
+hyprctl reload >/dev/null 2>&1
+
+# Wallpaper
+hyprctl hyprpaper wallpaper ",$HOME/.local/share/backgrounds/macos-big-sur-light.jpg,cover" >/dev/null 2>&1
 
 # waybar
 cp "$cfg/waybar/colors-latte.css" "$cfg/waybar/colors.css" 2>/dev/null && killall -SIGUSR2 waybar 2>/dev/null

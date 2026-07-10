@@ -15,7 +15,7 @@ set term "ghostty"
 fish_add_path ~/.local/bin
 
 set -x EDITOR /usr/bin/nvim
-set -x BROWSER /usr/bin/firefox
+set -x BROWSER /usr/bin/google-chrome-stable
 set -x TERMINAL /usr/bin/ghostty
 # Qt apps follow the qt5ct/qt6ct theme under Wayland (was the X11 gtk2 style plugin).
 set -x QT_QPA_PLATFORMTHEME qt5ct
@@ -83,6 +83,9 @@ abbr -a 'tailnode' 'sudo tailscale status --peers --json | jq ".ExitNodeStatus"'
 
 # Editor
 abbr -a 'v' 'nvim'
+
+# Apps
+abbr -a 'c'  'claude'
 
 # Music
 abbr -a 'p'   'mpc toggle'

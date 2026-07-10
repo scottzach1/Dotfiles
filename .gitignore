@@ -2,3 +2,4 @@
 /.idea/
 *.log
 omf-install
+configs/home/.config/fish/secrets/

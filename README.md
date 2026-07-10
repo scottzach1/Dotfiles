@@ -90,8 +90,8 @@ Handled by `1_post_install.sh` (`setup_nvidia`), but for reference:
 ### Displays
 
 Monitor config lives in [`monitors.conf`](configs/home/.config/hypr/monitors.conf)
-(sourced by `hyprland.conf`). Edit by hand or with the **`nwg-displays`** GUI
-(the Wayland arandr-equivalent) — it rewrites that file. Note: the G9's EDID
+(sourced by `hyprland.conf`). Edit by hand or with the **`nwg-displays`** GUI (the
+Wayland arandr-equivalent) — it rewrites that file. Note: the G9's EDID
 "preferred" mode mis-selects 3840x1080, so native 5120x1440 is pinned explicitly.
 
 ### Day/night theming

@@ -5,6 +5,7 @@ aspnet-runtime
 aspnet-targeting-pack
 aws-cli-v2
 base-devel
+biome
 blueman
 bluez
 bluez-utils
@@ -62,6 +63,7 @@ linux
 linux-firmware
 linux-headers
 lsof
+lua-language-server
 lvm2
 mako
 man-db
@@ -85,7 +87,6 @@ os-prober
 papirus-icon-theme
 parallel
 pavucontrol
-pgformatter
 pipewire
 pipewire-alsa
 pipewire-pulse
@@ -109,6 +110,7 @@ slurp
 sof-firmware
 sshfs
 starship
+stylua
 swappy
 tailscale
 thunar

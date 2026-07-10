@@ -1,7 +1,6 @@
 7zip
 alsa-utils
 amd-ucode
-appmenu-gtk-module
 base-devel
 blueman
 bluez
@@ -64,7 +63,7 @@ neovim
 network-manager-applet
 networkmanager
 ntfs-3g
-nvidia-open-dkms
+nvidia-open
 nvidia-utils
 nwg-displays
 nwg-look
@@ -118,7 +117,6 @@ uv
 vlc
 vulkan-headers
 waybar
-webkit2gtk
 wget
 wireplumber
 wl-clipboard

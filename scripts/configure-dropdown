@@ -1,0 +1,14 @@
+#!/bin/sh
+# Float and center the scratchpad after its kitty window appears.
+for _ in $(seq 1 50); do
+	if hyprctl clients -j | jq -e 'any(.[]; .class == "dropdown")' >/dev/null 2>&1; then
+		hyprctl dispatch setfloating class:dropdown >/dev/null
+		hyprctl dispatch resizewindowpixel 'exact 60% 70%,class:dropdown' >/dev/null
+		hyprctl dispatch movewindowpixel 'exact 20% 15%,class:dropdown' >/dev/null
+		exit 0
+	fi
+	sleep 0.1
+done
+
+echo "Dropdown scratchpad did not appear" >&2
+exit 1

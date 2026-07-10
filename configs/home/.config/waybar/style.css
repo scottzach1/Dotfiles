@@ -36,11 +36,14 @@ window#waybar {
 
 /* --- right-side modules: rounded "pill" with gaps so they don't run together --- */
 #custom-updates, #custom-mullvad, #network, #pulseaudio,
-#disk, #memory, #cpu, #temperature, #clock {
+#disk, #memory, #custom-cpucores, #cpu, #temperature, #clock {
     margin: 4px 3px;
     padding: 0 12px;
     border-radius: 8px;
 }
+
+/* per-core load sparkline — sits just before the CPU% pill, same mauve */
+#custom-cpucores { background: @mauve; color: @base; padding: 0 8px; }
 #tray { margin: 4px 3px; padding: 0 8px; }
 
 /* per-module colour (Catppuccin) */

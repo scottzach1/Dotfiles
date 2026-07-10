@@ -4,8 +4,8 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 27,
-    "spacing": 2,
+    "height": 32,
+    "spacing": 0,
 
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["hyprland/window"],
@@ -78,8 +78,10 @@
     },
 
     "cpu": {
-        "interval": 1,
-        "format": " {usage}%",
+        "interval": 2,
+        "format": "󰻠 {usage}%",
+        "states": { "warning": 70, "critical": 90 },
+        "tooltip-format": "CPU {usage}%   ·   load {load}",
         "on-click": "kitty -e htop"
     },
 

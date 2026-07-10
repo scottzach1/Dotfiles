@@ -3,44 +3,63 @@
 
 * {
     font-family: "FiraCode Nerd Font";
-    font-size: 12px;
+    font-size: 13px;
     min-height: 0;
 }
 
 window#waybar {
     background: @base;
     color: @text;
-    border-top: 3px solid @mauve;
+    border-bottom: 2px solid @mauve;
 }
 
+/* --- workspaces (left) --- */
+#workspaces { margin-left: 4px; }
 #workspaces button {
     padding: 0 8px;
+    margin: 4px 1px;
+    border-radius: 6px;
     color: @overlay;
     background: transparent;
 }
 #workspaces button.active {
-    color: @text;
-    background: @surface0;
-    border-bottom: 2px solid @mauve;
+    color: @base;
+    background: @mauve;
 }
 #workspaces button.urgent {
     color: @base;
     background: @red;
 }
 
-#window { color: @text; }
+#submap { color: @peach; margin: 0 6px; }
+#window { color: @subtext; }
 
-#custom-updates { background: @yellow; color: @base; padding: 0 8px; }
-#custom-mullvad.connected    { background: @green;  color: @base; padding: 0 8px; }
-#custom-mullvad.connecting   { background: @yellow; color: @base; padding: 0 8px; }
-#custom-mullvad.disconnected { background: @red;    color: @base; padding: 0 8px; }
-#network     { background: @surface1; color: @text; padding: 0 8px; }
-#pulseaudio  { background: @peach;    color: @base; padding: 0 8px; }
-#pulseaudio.muted { background: @red; color: @base; }
-#disk        { background: @surface1; color: @text; padding: 0 8px; }
-#memory      { background: @green;    color: @base; padding: 0 8px; }
-#cpu         { background: @mauve;    color: @base; padding: 0 8px; }
-#temperature { background: @surface0; color: @text; padding: 0 8px; }
-#temperature.critical { background: @red; color: @base; }
-#clock       { background: @surface0; color: @text; padding: 0 10px; }
-#tray        { padding: 0 8px; }
+/* --- right-side modules: rounded "pill" with gaps so they don't run together --- */
+#custom-updates, #custom-mullvad, #network, #pulseaudio,
+#disk, #memory, #cpu, #temperature, #clock {
+    margin: 4px 3px;
+    padding: 0 12px;
+    border-radius: 8px;
+}
+#tray { margin: 4px 3px; padding: 0 8px; }
+
+/* per-module colour (Catppuccin) */
+#custom-updates { background: @yellow;   color: @base; }
+#custom-mullvad.connected    { background: @green;  color: @base; }
+#custom-mullvad.connecting   { background: @yellow; color: @base; }
+#custom-mullvad.disconnected { background: @surface1; color: @subtext; }
+#network      { background: @surface1; color: @text; }
+#pulseaudio   { background: @peach;    color: @base; }
+#pulseaudio.muted { background: @surface1; color: @subtext; }
+#disk         { background: @surface1; color: @text; }
+#memory       { background: @teal;     color: @base; }
+#clock        { background: @surface0; color: @text; }
+
+/* CPU: colour follows load thresholds (states in config.jsonc) */
+#cpu            { background: @mauve;  color: @base; }
+#cpu.warning    { background: @yellow; color: @base; }
+#cpu.critical   { background: @red;    color: @base; }
+
+/* Temperature: normal subtle, critical red */
+#temperature          { background: @surface0; color: @text; }
+#temperature.critical { background: @red;       color: @base; }

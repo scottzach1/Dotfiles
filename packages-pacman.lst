@@ -33,6 +33,7 @@ gnome-keyring
 gparted
 grim
 grub
+gsettings-desktop-schemas
 gspell
 gtk4
 gvfs

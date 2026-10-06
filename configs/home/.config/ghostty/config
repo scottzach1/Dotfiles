@@ -1,0 +1,3 @@
+# Follow the desktop light/dark preference (darkman -> portal colour-scheme).
+# Names must match `ghostty +list-themes` exactly.
+theme = light:Catppuccin Latte,dark:Dracula

@@ -62,7 +62,13 @@ fi
 
 mkdir -p "$cfg/dunst/dunstrc.d"
 ln -sfn "../themes/$theme.conf" "$cfg/dunst/dunstrc.d/50-theme.conf"
-pgrep -x dunst >/dev/null && dunstctl reload >/dev/null 2>&1
+if pgrep -x dunst >/dev/null; then
+    # `dunstctl reload` un-pauses dunst; keep it paused if betterlockscreen paused
+    # it (a sunrise/sunset switch can land while the screen is locked).
+    paused=$(dunstctl is-paused 2>/dev/null)
+    dunstctl reload >/dev/null 2>&1
+    [ "$paused" = true ] && dunstctl set-paused true
+fi
 
 ln -sfn "colors-$theme.rasi" "$cfg/rofi/colors.rasi"   # launched on demand
 

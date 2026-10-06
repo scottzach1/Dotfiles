@@ -23,7 +23,7 @@ echo "$mode" > "$state"   # read by the fish prompt and nvim
 if [ "$theme" = latte ]; then
     border_normal="#ccd0da"; border_active="#9ca0b0"; border_focused="#8839ef"; presel="#7287fd"
     gtk_theme="Colloid-Light-Catppuccin"; icon_theme="Papirus-Light"; scheme="prefer-light"
-    wallpaper="$HOME/.local/share/backgrounds/macos-big-sur-light.jpg"
+    wallpaper="$HOME/.local/share/backgrounds/falseWallpaper-latte.png"
     # terminator
     t_bg="#eff1f5"; t_fg="#4c4f69"
     t_palette="#5c5f77:#d20f39:#40a02b:#df8e1d:#1e66f5:#ea76cb:#179299:#acb0be:#6c6f85:#d20f39:#40a02b:#df8e1d:#1e66f5:#ea76cb:#179299:#bcc0cc"

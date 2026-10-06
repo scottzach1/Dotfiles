@@ -195,9 +195,14 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# focus or send to the given desktop on the main monitor — by name, not '^n',
+# so it doesn't depend on the order bspwm happened to add the monitors in
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} {I,II,III,IV,V,VI,VII,VIII}
+
+# focus or send to the side monitor's desktop
+super + {_,shift + }0
+	~/.config/bspwm/side-desktop {focus,send}
 
 super + shift {Next, Prior}
 	bspc node -d {next, prev}

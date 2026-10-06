@@ -1,0 +1,10 @@
+#!/bin/sh
+# Focus (or send the focused window to) the active desktop on the side monitor,
+# i.e. whichever monitor isn't the xrandr primary. Bound to super(+shift)+0.
+primary=$(bspc query -M -m primary 2>/dev/null)
+side=$(bspc query -M | grep -vxF "$primary" | head -n1)
+[ -n "$side" ] || exit 0
+case "$1" in
+    send) bspc node -d "$side:focused" ;;
+    *)    bspc desktop -f "$side:focused" ;;
+esac

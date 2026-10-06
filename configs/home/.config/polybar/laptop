@@ -29,6 +29,8 @@ include-file = ~/.config/polybar/colors.ini
 ;
 
 [bar/bspwm-bar]
+; lets theme-apply reload colours via polybar-msg
+enable-ipc = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -146,7 +148,7 @@ use-ui-max = false
 format-volume = %{A3:pavucontrol &:}%{A2:pactl set-sink-volume @DEFAULT_SINK@ 100%:}<ramp-volume> <label-volume>%{A}%{A}
 
 label-muted = %{A3:pavucontrol &:}ﱝ %percentage%%%{A}
-label-muted-foreground = ${colors.foreground}
+label-muted-foreground = ${colors.on-accent}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 奄
@@ -227,7 +229,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/laptop/mullvad-disconnected.sh
 
 format-background = ${colors.red}
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.on-accent}
 
 click-left = "mullvad connect &"
 click-right = "mullvad-vpn &"
@@ -346,6 +348,7 @@ ramp-coreload-6 = ▇
 ramp-coreload-7 = █
 
 format-background = ${colors.purple}
+format-foreground = ${colors.on-accent}
 
 [module/date]
 type = internal/date

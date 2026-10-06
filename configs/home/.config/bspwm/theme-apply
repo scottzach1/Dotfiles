@@ -55,7 +55,10 @@ fi
 
 # --- polybar / dunst / rofi: swap the live colour file, then reload ---------
 ln -sfn "colors-$theme.ini" "$cfg/polybar/colors.ini"
-pgrep -x polybar >/dev/null && polybar-msg cmd restart >/dev/null 2>&1
+if pgrep -x polybar >/dev/null; then
+    polybar-msg cmd restart >/dev/null 2>&1 ||
+        setsid "$cfg/polybar/launch.sh" >/dev/null 2>&1 < /dev/null &
+fi
 
 mkdir -p "$cfg/dunst/dunstrc.d"
 ln -sfn "../themes/$theme.conf" "$cfg/dunst/dunstrc.d/50-theme.conf"

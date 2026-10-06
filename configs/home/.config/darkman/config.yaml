@@ -1,0 +1,12 @@
+# darkman — day/night switching. At sunrise/sunset it runs the scripts in
+# ~/.local/share/{light,dark}-mode.d/, which call ~/.config/bspwm/theme-apply
+# (Catppuccin Latte by day, Dracula by night).
+#
+# Fixed coordinates instead of geoclue (Auckland, NZ — edit for your location).
+lat: -36.85
+lng: 174.76
+usegeoclue: false
+dbusserver: true   # `darkman get/set/toggle`
+# The colour-scheme portal is served by xdg-desktop-portal-gtk, which reads the
+# gsettings value theme-apply sets, so darkman's own portal stays off.
+portal: false

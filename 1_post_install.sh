@@ -213,6 +213,21 @@ apply_luks_perf() {
   sudo cryptsetup refresh --perf-no_read_workqueue --perf-no_write_workqueue --allow-discards --persistent luks
 }
 
+setup_gtk_theme() {
+  # Light GTK theme for darkman's day mode: Colloid with the Catppuccin tweak,
+  # built from source (needs sassc) into ~/.themes/Colloid-Light-Catppuccin.
+  # Night mode keeps Ant-Dracula (AUR). Names are referenced in bspwm/theme-apply.
+  log "INFO" "Installing Colloid GTK theme (Catppuccin Latte)"
+  local dir="$CLONE_DIR/Themes/Colloid-gtk-theme"
+  if [ ! -d "$dir" ]; then
+    mkdir -p "$(dirname "$dir")"
+    git clone --depth 1 https://github.com/vinceliuice/Colloid-gtk-theme.git "$dir"
+  fi
+  pushd "$dir" > /dev/null
+  ./install.sh --tweaks catppuccin -c light || log "WARN" "- Colloid install returned non-zero"
+  popd > /dev/null
+}
+
 setup_misc() {
   # Setup wallpaper
   log "INFO" "Setting up miscellaneous things"
@@ -231,6 +246,7 @@ main() {
 	install_python
 	setup_nvim
 	setup_fish
+	setup_gtk_theme
 	setup_misc
 	enable_services
 	apply_luks_perf

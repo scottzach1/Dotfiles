@@ -14,6 +14,7 @@ bluez-utils
 bspwm
 chromium
 csvlens
+darkman
 dhcpcd
 dialog
 dnsmasq
@@ -99,6 +100,7 @@ qt5ct
 rclone
 rofi
 samba
+sassc
 shfmt
 signal-desktop
 sof-firmware
@@ -142,6 +144,7 @@ xorg-xbacklight
 xorg-xrdb
 xorg-xwininfo
 xsel
+xsettingsd
 xterm
 yarn
 yq

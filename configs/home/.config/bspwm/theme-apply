@@ -1,0 +1,116 @@
+#!/bin/bash
+# theme-apply — flip the bspwm desktop between Dracula (dark) and Catppuccin
+# Latte (light). Called by darkman's ~/.local/share/{dark,light}-mode.d hooks at
+# sunset/sunrise, and by bspwmrc at login. Safe to run when apps aren't running.
+#
+#   theme-apply dark|light        (no arg: ask darkman, else last mode, else dark)
+
+cfg="$HOME/.config"
+state="${XDG_STATE_HOME:-$HOME/.local/state}/theme-mode"
+
+mode="$1"
+[ -z "$mode" ] && mode="$(darkman get 2>/dev/null)"
+[ -z "$mode" ] && mode="$(cat "$state" 2>/dev/null)"
+case "$mode" in
+    light) theme=latte ;;
+    *)     mode=dark; theme=dracula ;;
+esac
+
+mkdir -p "$(dirname "$state")"
+echo "$mode" > "$state"   # read by the fish prompt and nvim
+
+# --- palette ----------------------------------------------------------------
+if [ "$theme" = latte ]; then
+    border_normal="#ccd0da"; border_active="#9ca0b0"; border_focused="#8839ef"; presel="#7287fd"
+    gtk_theme="Colloid-Light-Catppuccin"; icon_theme="Papirus-Light"; scheme="prefer-light"
+    wallpaper="$HOME/.local/share/backgrounds/macos-big-sur-light.jpg"
+    # terminator
+    t_bg="#eff1f5"; t_fg="#4c4f69"
+    t_palette="#5c5f77:#d20f39:#40a02b:#df8e1d:#1e66f5:#ea76cb:#179299:#acb0be:#6c6f85:#d20f39:#40a02b:#df8e1d:#1e66f5:#ea76cb:#179299:#bcc0cc"
+    t_title_fg="#eff1f5"; t_title_tx="#40a02b"; t_title_rx="#8839ef"; t_title_in_fg="#4c4f69"; t_title_in_bg="#ccd0da"
+else
+    border_normal="#44475a"; border_active="#6272a4"; border_focused="#8be9fd"; presel="#6272a4"
+    gtk_theme="Ant-Dracula"; icon_theme="Papirus-Dark"; scheme="prefer-dark"
+    wallpaper="/usr/share/backgrounds/falseWallpaper.png"
+    t_bg="#282a36"; t_fg="#f8f8f2"
+    t_palette="#262626:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#efa554:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#ffb86c"
+    t_title_fg="#282a36"; t_title_tx="#50fa7b"; t_title_rx="#ff79c6"; t_title_in_fg="#f8f8f2"; t_title_in_bg="#44475a"
+fi
+
+# Fall back to the dark GTK theme if the light one hasn't been built yet.
+if [ ! -d "$HOME/.themes/$gtk_theme" ] && [ ! -d "/usr/share/themes/$gtk_theme" ]; then
+    gtk_theme="Ant-Dracula"
+fi
+
+# --- bspwm borders ----------------------------------------------------------
+if bspc query -M >/dev/null 2>&1; then
+    bspc config normal_border_color   "$border_normal"
+    bspc config active_border_color   "$border_active"
+    bspc config focused_border_color  "$border_focused"
+    bspc config presel_feedback_color "$presel"
+fi
+
+# --- wallpaper --------------------------------------------------------------
+[ -f "$wallpaper" ] && nitrogen --head=0 --set-scaled "$wallpaper" >/dev/null 2>&1 &
+
+# --- polybar / dunst / rofi: swap the live colour file, then reload ---------
+ln -sfn "colors-$theme.ini" "$cfg/polybar/colors.ini"
+if pgrep -x polybar >/dev/null; then
+    polybar-msg cmd restart >/dev/null 2>&1 ||
+        setsid "$cfg/polybar/launch.sh" >/dev/null 2>&1 < /dev/null &
+fi
+
+mkdir -p "$cfg/dunst/dunstrc.d"
+ln -sfn "../themes/$theme.conf" "$cfg/dunst/dunstrc.d/50-theme.conf"
+pgrep -x dunst >/dev/null && dunstctl reload >/dev/null 2>&1
+
+ln -sfn "colors-$theme.rasi" "$cfg/rofi/colors.rasi"   # launched on demand
+
+# --- terminator (no live reload — applies to new windows) --------------------
+tcfg="$cfg/terminator/config"
+if [ -f "$tcfg" ]; then
+    sed -i \
+        -e "s|^\(\s*background_color = \).*|\1\"$t_bg\"|" \
+        -e "s|^\(\s*foreground_color = \).*|\1\"$t_fg\"|" \
+        -e "s|^\(\s*palette = \).*|\1\"$t_palette\"|" \
+        -e "s|^\(\s*title_transmit_fg_color = \).*|\1\"$t_title_fg\"|" \
+        -e "s|^\(\s*title_transmit_bg_color = \).*|\1\"$t_title_tx\"|" \
+        -e "s|^\(\s*title_receive_fg_color = \).*|\1\"$t_title_fg\"|" \
+        -e "s|^\(\s*title_receive_bg_color = \).*|\1\"$t_title_rx\"|" \
+        -e "s|^\(\s*title_inactive_fg_color = \).*|\1\"$t_title_in_fg\"|" \
+        -e "s|^\(\s*title_inactive_bg_color = \).*|\1\"$t_title_in_bg\"|" \
+        "$tcfg"
+fi
+
+# kitty + ghostty follow the portal colour-scheme natively
+# (kitty: {dark,light}-theme.auto.conf, ghostty: `theme = light:…,dark:…`).
+
+# --- GTK --------------------------------------------------------------------
+# X11 GTK3 apps read XSETTINGS (xsettingsd, live on SIGHUP); settings.ini covers
+# apps started without it; gsettings drives the portal colour-scheme that
+# Chrome/Electron/libadwaita/kitty/ghostty follow.
+mkdir -p "$cfg/xsettingsd"
+cat > "$cfg/xsettingsd/xsettingsd.conf" <<EOF
+Net/ThemeName "$gtk_theme"
+Net/IconThemeName "$icon_theme"
+EOF
+pkill -HUP -x xsettingsd 2>/dev/null
+
+sed -i -e "s/^gtk-theme-name=.*/gtk-theme-name=$gtk_theme/" \
+       -e "s/^gtk-icon-theme-name=.*/gtk-icon-theme-name=$icon_theme/" \
+       "$cfg/gtk-3.0/settings.ini" 2>/dev/null
+
+if command -v gsettings >/dev/null 2>&1; then
+    gsettings set org.gnome.desktop.interface color-scheme "$scheme"
+    gsettings set org.gnome.desktop.interface gtk-theme    "$gtk_theme"
+    gsettings set org.gnome.desktop.interface icon-theme   "$icon_theme"
+fi
+
+# --- neovim: re-pick the colourscheme in every running instance --------------
+for sock in "${XDG_RUNTIME_DIR:-/run/user/$UID}"/nvim.*; do
+    [ -S "$sock" ] && timeout 2 nvim --server "$sock" \
+        --remote-send '<Cmd>lua require("config.theme").apply()<CR>' >/dev/null 2>&1 &
+done
+
+wait
+exit 0

@@ -1,0 +1,24 @@
+/* Catppuccin Latte (light) — linked to colors.rasi by bspwm/theme-apply.
+   Same names as colors-dracula.rasi, mapped by role. */
+* {
+    opaque:       rgba ( 239, 241, 245, 0 % );
+    gray:         #e6e9ef;
+    light-gray:   #9ca0b0;
+
+    white:        #4c4f69;
+    background:   #eff1f5;
+    current-line: #ccd0da;
+    selection:    #ccd0da;
+    foreground:   #4c4f69;
+    cyan:         #04a5e5;
+    green:        #40a02b;
+    orange:       #fe640b;
+    pink:         #ea76cb;
+    purple:       #8839ef;
+    red:          #d20f39;
+    yellow:       #df8e1d;
+
+    /* Latte's pink is too faint on mantle for the selected row. */
+    selected-normal-foreground:     #4c4f69;
+    selected-normal-background:     #ccd0da;
+}

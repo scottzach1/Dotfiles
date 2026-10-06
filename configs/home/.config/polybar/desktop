@@ -20,32 +20,17 @@
 ;; colors
 ;
 
-[colors]
-background = #282a36
-selection = #44475a
-foreground = #f8f8f2
-comment = #6272a4
-cyan = #8be9fd
-green = #50fa7b
-orange = #ffb86c
-pink = #ff79c6
-purple = #bd93f9
-red = #ff5555
-yellow = #f1fa8c
-
-urgent = ${colors.red}
-
-background-alt = #44475a
-foreground-alt = #88868a
-primary = #ff79c6
-secondary = #f1fa8c
-alert = #ff5555
+; Palette lives in colors.ini — a symlink to colors-dracula.ini (dark) or
+; colors-latte.ini (light), swapped by darkman via ~/.config/bspwm/theme-apply.
+include-file = ~/.config/polybar/colors.ini
 
 ;
 ;; polybar
 ;
 
 [bar/bspwm-bar]
+; lets theme-apply reload colours via polybar-msg
+enable-ipc = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -162,7 +147,7 @@ use-ui-max = false
 format-volume = %{A3:pavucontrol &:}%{A2:pactl set-sink-volume @DEFAULT_SINK@ 100%:}<ramp-volume> <label-volume>%{A}%{A}
 
 label-muted = %{A3:pavucontrol &:}ﱝ %percentage%%%{A}
-label-muted-foreground = ${colors.foreground}
+label-muted-foreground = ${colors.on-accent}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 奄
@@ -240,7 +225,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/desktop/mullvad-disconnected.sh
 
 format-background = ${colors.red}
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.on-accent}
 
 click-left = "mullvad connect &"
 click-right = "mullvad-vpn &"
@@ -384,6 +369,7 @@ ramp-coreload-6 = ▇
 ramp-coreload-7 = █
 
 format-background = ${colors.purple}
+format-foreground = ${colors.on-accent}
 
 [module/date]
 type = internal/date
@@ -469,7 +455,7 @@ label = %temperature-c%°
 ;   %temperature-c%   (default, temperature in °C)
 ;   %temperature-f%   (temperature in °F)
 label-warn = %temperature-c%°
-label-warn-foreground = ${colors.foreground}
+label-warn-foreground = ${colors.on-accent}
 format-warn-background = ${colors.red}
 
 ; Requires the <ramp> tag

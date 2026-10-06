@@ -56,6 +56,27 @@ In the future I will try to automate with a script and list all required depende
    bash 1_post_install.sh
    ```
 
+## Light / dark theme
+
+**Dracula** by night, **Catppuccin Latte** by day, switched at sunset/sunrise by
+[`darkman`](https://gitlab.com/WhyNotHugo/darkman) (fixed Auckland coordinates in
+`~/.config/darkman/config.yaml`; no geoclue).
+
+- bspwmrc starts `darkman.service` and runs `~/.config/bspwm/theme-apply` at login.
+- darkman runs `~/.local/share/{light,dark}-mode.d/desktop.sh`, which call
+  `theme-apply light|dark`. That re-colours bspwm borders, swaps the polybar /
+  dunst / rofi palette symlinks (`colors.ini`, `dunstrc.d/50-theme.conf`,
+  `colors.rasi`) and reloads them, rewrites terminator's palette (new windows),
+  sets the wallpaper, and flips GTK.
+- GTK3 on X11 reads XSETTINGS, so `xsettingsd` is reloaded with the new theme
+  (Ant-Dracula ↔ Colloid-Light-Catppuccin, built by `setup_gtk_theme`).
+- `gsettings color-scheme` drives the freedesktop appearance portal
+  (xdg-desktop-portal-gtk), which Chrome, Electron apps, libadwaita, kitty
+  (`{dark,light}-theme.auto.conf`) and ghostty (`theme = light:…,dark:…`) follow.
+- Chrome: set **Settings → Appearance → Mode → Device**.
+
+Manual: `darkman set light`, `darkman set dark`, `darkman toggle`.
+
 ## Screenshot laptop w/ bspwm + polybar
 
 <p align="center">
